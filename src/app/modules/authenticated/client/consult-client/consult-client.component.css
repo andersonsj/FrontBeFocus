@@ -1,0 +1,39 @@
+.be-consult-client {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.be-form-consult-client {
+    display: grid;
+    grid-template-columns: auto auto 20%;
+}
+
+.be-div-interno {
+    display: grid;
+    grid-template-columns: 30% auto;
+    justify-content: center;
+    grid-column-gap: 2%;
+}
+
+.be-div-consultar {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+button {
+    width: 70%;
+    font-size: calc(0.8em + 0.2vw);
+}
+
+
+option {
+    color: white;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }

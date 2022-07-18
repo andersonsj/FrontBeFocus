@@ -1,0 +1,226 @@
+<div class="be-create-orders-content">
+
+    <div>
+        <mat-card>
+            <mat-card-title>Registro orden -- # {{numberOrder}}</mat-card-title>
+            <mat-card-subtitle>Alguna descripcion importante</mat-card-subtitle>
+            <mat-card-content>
+                <form novalidate [formGroup]="orderForm">
+                    <div class="be-create-orders-div-form">
+
+                        <div class="be-create-orders-div-row1">
+
+                            <div class="form-group">
+                                <div><label>Tipo Orden</label></div>
+                                <div>
+                                    <select name="etapaComercial" id="etapaComercial" class="form-control"
+                                     tabindex="1" formControlName="lastStageCode">
+                                    <option [value]="item.stageCode" *ngFor="let item of stageProcessCRM">
+                                        {{item.stageName | titlecase}}
+                                    </option>
+                                </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div><label>Tipo Doc Cliente</label></div>
+                                <div>
+                                    <select name="tipoDocumento" id="tipoDocumento" class="form-control"
+                                        formControlName="typeDocument" tabindex="1">
+                                        <option value=""></option>
+                                        <option [value]="item.documentTypeTPId" *ngFor="let item of documentTypeTP">
+                                            {{item.description | titlecase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <div><label>Documento Cliente</label></div>
+                                    <div>
+                                        <input type="text" class="form-control" formControlName="documentNumber"
+                                            (change)="getClient()" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <div><label>Nombre cliente</label></div>
+                                    <div><input type="text" class="form-control" placeholder="{{nameClient}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <div><label>Tipo documento distribuidor</label></div>
+                                    <div><input type="text" class="form-control"
+                                            placeholder="{{typeDescriptionDistributor}}" disabled></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div><label>Documento distribuidor</label></div>
+                                <div>
+                                    <select name="distributorCode" id="distributorCode" class="form-control"
+                                        formControlName="distributorCode" (change)="getTypeDescriptionDistributor()">
+                                        <option value=""></option>
+                                        <option [value]="item.documentNumber" *ngFor="let item of distributorList">
+                                            {{item.documentNumber | titlecase}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="be-create-orders-div-row1">
+
+                            <div class="form-group">
+                                <div><label>Identificador Compañía</label></div>
+                                <div><input type="number" class="form-control" formControlName="companyCode" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <div><label>Id vendedor</label></div>
+                                    <div>
+                                        <select name="idSeller" id="idSeller" class="form-control"
+                                            (change)="assignSelectedSellerName()" [(ngModel)]="selectedSeller"
+                                            formControlName="sellerID" tabindex="4">
+                                            <option value=""></option>
+                                            <option [value]="seller.identification" *ngFor="let seller of sellersList">
+                                                {{seller.identification}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <div><label>Nombre vendedor</label></div>
+                                    <div><input type="text" class="form-control"
+                                            placeholder="{{nameSellerSelected | titlecase}}" readonly></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div>
+                                    <div><label>Total</label></div>
+                                    <div><input type="number" class="form-control"
+                                            placeholder="{{totalOrder | currency}}" formControlName="totalValue" readonly></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+                </form>
+
+                <mat-card-subtitle>Productos de la orden</mat-card-subtitle>
+                <form [formGroup]="form">
+
+                    <ng-container formArrayName="productsAll">
+                        <div *ngFor="let creds of pro.controls; let i = index" class="be-create-orders-div-row1">
+                            <ng-container [formGroupName]="i">
+                                <div class="form-group">
+                                    <div>
+                                        <div><label>Codigo producto</label></div>
+                                        <div>
+                                            <input type="number" class="form-control"
+                                                placeholder="{{pro.controls[i].get('productCode')?.value}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <div><label>Descripcion producto</label></div>
+                                        <div>
+                                            <select name="productDescription" id="productDescription"
+                                                class="form-control" formControlName="productCode"
+                                                (change)="calculateTotal(i)">
+                                                <option value=""></option>
+                                                <option [value]="product.productCode"
+                                                    *ngFor="let product of products; let j = index">
+                                                    {{product.name}}
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <div><label>Unidades disponibles</label></div>
+                                        <div><input type="number" class="form-control"
+                                                placeholder="{{pro.controls[i].get('unitsAvailable')?.value}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <div><label>Cantidad</label></div>
+                                        <div>
+                                            <input type="number" class="form-control" formControlName="quantity">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <div><label>Valor unitario</label></div>
+                                        <div>
+                                            <input type="number" class="form-control" formControlName="price"
+                                                (change)="calculateTotalOrder()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <div><label>Valor total</label></div>
+                                        <div>
+                                            <input type="text" class="form-control" formControlName="total"
+                                                placeholder="{{pro.controls[i].get('quantity')?.value * pro.controls[i].get('price')?.value | currency}}"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </ng-container>
+
+                        </div>
+                    </ng-container>
+                </form>
+
+
+                <div class="be-create-orders-div-row1">
+
+                    <div>
+                        <div><label></label></div>
+                        <div><button class="btn btn-primary" (click)="addPro()"><i class="bi bi-badge-ad-fill"></i>
+                                Agregar Producto</button></div>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+
+                    <div class="form-group">
+                        <div><label></label></div>
+                        <div><button class="btn btn-primary" (click)="createOrder()">Guardar Orden</button></div>
+                    </div>
+
+                </div>
+
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

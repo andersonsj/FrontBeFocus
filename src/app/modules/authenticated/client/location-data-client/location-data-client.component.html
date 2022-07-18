@@ -1,0 +1,136 @@
+<div class="be-location-data-client">
+
+    <mat-card class="mat-card-auto">
+        <mat-card-title>Datos de localización</mat-card-title>
+        <mat-card-content>
+
+            <form class="be-location-data-client-form" novalidate [formGroup]="createAdressForm">
+
+                <div class="form-group">
+                    <div><label>Tipo de dirección</label></div>
+                    <div>
+                        <select name="typeAddressCode" id="typeAddressCode" class="form-control"
+                            formControlName="typeAddressCode" [(ngModel)]="selectedAddressType">
+                            <option [value]="addressType.adressTypesId" *ngFor="let addressType of addressTypes">
+                                {{addressType.description | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Dirección</label></div>
+                    <div><input type="text" class="form-control" formControlName="address"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Dirección estandarizada</label></div>
+                    <div><input type="text" class="form-control" formControlName="addressStandar"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Codigo postal</label></div>
+                    <div><input type="text" class="form-control" formControlName="postalCode"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <div><label>País</label></div>
+                    <div>
+                        <select name="country_code" id="country_code" class="form-control"
+                            [(ngModel)]="selectedCountryTP" (change)="selectedCountryChange()"
+                            formControlName="country_code">
+                            <option value=""></option>
+                            <option [value]="country.abbreviation" *ngFor="let country of countries">
+                                {{country.description | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div><label>Departamento</label></div>
+                    <div>
+                        <select name="state_code" id="state_code" class="form-control"
+                            [(ngModel)]="selectedDepartmentTP" (change)="selectedDepartmentChange()"
+                            formControlName="state_code">
+                            <option value=""></option>
+                            <option [value]="department.departmentTPId" *ngFor="let department of departments">
+                                {{department.description | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Ciudad </label></div>
+                    <div>
+                        <select name="city_code" id="city_code" class="form-control" formControlName="city_code">
+                            <option value=""></option>
+                            <option [value]="city.cityTPId" *ngFor="let city of cities">{{city.description | titlecase}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label></label>
+                    <div>
+                        <button class="btn btn-primary" (click)="createAdress()"
+                            [disabled]="createAdressForm.invalid"><i class="bi bi-arrow-up-square-fill"></i> Crear
+                            dirección</button>
+                    </div>
+                </div>
+            </form>
+
+            <form class="be-location-list-data-client-form" novalidate [formGroup]="registeredAddressesForm"
+                *ngFor="let registeredAddresse of registeredAddresses">
+
+                <div class="form-group">
+                    <div><label>Tipo de dirección</label></div>
+                    <div>
+                        <label>{{registeredAddresse.typeAddressCode}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Direccion</label></div>
+                    <div><label>{{registeredAddresse.address}}</label></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Direccion estandarizada</label></div>
+                    <div><label>{{registeredAddresse.addressStandar}}</label></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Codigo postal</label></div>
+                    <div><label></label></div>
+                </div>
+
+
+                <div class="form-group">
+                    <div><label>Pais</label></div>
+                    <div><label>{{registeredAddresse.country_code}}</label></div>
+                </div>
+
+                <div class="form-group">
+                    <div><label>Departamento</label></div>
+                    <div><label></label></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Ciudad </label></div>
+                    <div><label></label></div>
+                </div>
+
+                <div>
+                    <label></label>
+                    <div>
+                        <a href="">Editar dirección</a>
+                    </div>
+                </div>
+
+                <div>
+                    <label></label>
+                    <div>
+                        <a href="">Guardar dirección</a>
+                    </div>
+                </div>
+
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+
+
+</div>

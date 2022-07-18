@@ -1,0 +1,19 @@
+<div class="be-consult-client">
+    <form class="be-form-consult-client" novalidate [formGroup]="getClientForm">
+        <div class="form-group be-div-interno">
+            <div><label>Tipo documento</label></div>
+            <div>
+                <select name="tipoDocumento" id="tipoDocumento" class="form-control" formControlName="typeDocument" required>
+                    <option [value]="item.documentTypeTPId" *ngFor="let item of documentTypeTP" class="option">{{item.description | titlecase}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group be-div-interno">
+            <div><label>Número documento</label></div>
+            <div><input type="number" class="form-control" formControlName="documentNumber" required></div>
+        </div>
+        <div class="form-group be-div-consultar">
+            <div><button id="boton-consultar" class="btn btn-primary"  [disabled]="getClientForm.invalid" (click) = "getClient()"><i class="bi bi-search"></i> Consultar cliente</button></div>
+        </div>
+    </form>
+</div>

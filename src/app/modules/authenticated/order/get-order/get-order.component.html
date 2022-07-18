@@ -1,0 +1,135 @@
+<div class="be-get-order-content" id="print-section">
+    <mat-card>
+        <mat-card-title>Consulta documento comercial</mat-card-title>
+        <mat-card-subtitle>En esta sección puedes consultar (Cotizaciones, Orden Pedido, Facturas).</mat-card-subtitle>
+        <br>
+        <form class="be-get-order-form" novalidate [formGroup]="getOrderForm">
+            <div class="be-get-order-columns">
+                <div class="form-group be-div-interno">
+                    <div><label>Codigo documento</label></div>
+                    <div>
+                        <div><input type="number" class="form-control" formControlName="orderCode" required></div>
+                    </div>
+                </div>
+                <div class="form-group be-div-interno">
+                    <div><label>Identificador Compañia</label></div>
+                    <div><input type="number" class="form-control" formControlName="companyCode" readonly></div>
+                </div>
+                <div class="form-group be-div-consultar">
+                    <div><button id="boton-consultar" class="btn btn-primary" [disabled]="getOrderForm.invalid"
+                            (click)="getOrderData()"><i class="bi bi-search"></i> Consultar Orden</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" printSectionId="print-section" ngxPrint><i
+                                class="bi bi-printer-fill"></i> Imprimir
+                            documento</button>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="be-get-order-columns-data">
+                <div class="form-group">
+                    <div>
+                        <div><label>Tipo de documento</label></div>
+                        <div><input type="text" class="form-control"
+                                value="{{getOrderFormData('typeDocumentString') | titlecase}}" readonly></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <div><label>Numero de documento</label></div>
+                        <div><input type="number" class="form-control" value="{{getOrderFormData('documentNumber')}}"
+                                readonly></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <div><label>Identificador distribuidor</label></div>
+                        <div><input type="number" class="form-control" value="{{getOrderFormData('distributorCode')}}"
+                                readonly></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <div><label>Total</label></div>
+                        <div><input type="text" class="form-control"
+                                value="{{getOrderFormData('totalValue') | currency}}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <div><label>Id Vendedor</label></div>
+                        <div><input type="text" class="form-control" value="{{getOrderFormData('sellerID')}}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <div><label>Nombre Vendedor</label></div>
+                        <div><input type="text" class="form-control"
+                                value="{{getOrderFormData('sellerName') | titlecase}}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </mat-card>
+
+    <hr>
+
+    <mat-card>
+        <mat-card-title>Productos</mat-card-title>
+        <mat-card-subtitle>En esta sección puedes visualizar los productos registrados en el documento comercial.
+        </mat-card-subtitle>
+        <form class="be-get-order-details-columns-data" novalidate [formGroup]="getOrderDetailsForm"
+            *ngFor="let product of listProducts; let i = index">
+            <div class="form-group">
+                <div>
+                    <div><label>Codigo producto</label></div>
+                    <div><input type="number" class="form-control" [value]="product.productCode"
+                            placeholder="{{product.productCode}}" formControlName="productCode" readonly></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div><label>Descripción producto</label></div>
+                    <div><input type="text" class="form-control" [value]="product.productName"
+                            placeholder="{{product.productName}}" formControlName="productName" readonly></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div><label>Cantidad</label></div>
+                    <div><input type="number" class="form-control" [value]="product.quantity"
+                            placeholder="{{product.quantity}}" formControlName="quantity" readonly></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div><label>Valor unitario</label></div>
+                    <div><input type="number" class="form-control" [value]="product.price"
+                            placeholder="{{product.price | currency}}" formControlName="price" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div><label>Valor total</label></div>
+                    <div><input type="number" class="form-control" [value]="product.total"
+                            placeholder="{{product.total | currency}}" formControlName="total" readonly>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card>
+
+</div>

@@ -1,0 +1,27 @@
+.be-register-client {
+    display: grid;
+    height: 100%;
+}
+
+.be-register-client-form {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 25%;
+    grid-column-gap: 1%;
+    grid-template-rows: auto auto auto auto auto;
+    grid-row-gap: 2%;
+}
+
+button {
+    width: 50%;
+    font-size: 0.8vw;
+}
+
+.mat-card-auto {
+    box-shadow: 0px 10px 10px rgb(26, 60, 64);
+    background: rgb(239, 239, 239);
+}
+
+.datepicker-costumer {
+    width: 100%;
+}
+

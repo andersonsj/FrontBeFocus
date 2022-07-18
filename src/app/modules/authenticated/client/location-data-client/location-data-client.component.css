@@ -1,0 +1,26 @@
+.be-location-data-client {
+    display: grid;
+    overflow-y: scroll;
+    height: 96%;
+    box-shadow: 0px 10px 10px rgb(26, 60, 64);
+}
+
+.be-location-data-client-form {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 1%;
+    grid-template-rows: auto auto auto auto auto;
+    grid-row-gap: 2%;
+}
+
+.be-location-list-data-client-form {
+    display: grid;
+    grid-template-columns: 10% 11% 11% 10% 10% 10% 10% 10% 10%;
+    grid-column-gap: 1%;
+    grid-row-gap: 2%;
+    padding-top: 1%;
+}
+
+.mat-card-auto {
+    background: rgb(239, 239, 239);
+}

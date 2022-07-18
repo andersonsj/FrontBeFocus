@@ -1,0 +1,24 @@
+<ul class="acorh" *ngIf="activateButton">
+    <li id="opcion1" (click)="navegationBydashboard()"><a ><b><i class="bi bi-clipboard-data"></i></b> Dashboard</a>
+    </li>
+    <li id="opcion1"><a><b><i class="bi bi-book"></i></b> Documentos comerciales</a>
+        <ul>
+            <li (click)=" navegationByManagerOrders()"><a><b><i class="bi bi-search"></i></b> Consultar documento</a></li>
+            <li (click)="navegationByCreateOrders()"><a><b><i class="bi bi-plus-circle"></i></b> Crear documento</a></li>
+        </ul>
+    </li>
+
+    <li id="opcion2" (click)="navegation()"><a><b><i class="bi bi-person-workspace"></i></b> Gestión de clientes</a>
+        <ul>
+            <li><a><b><i class="bi bi-search"></i></b> Consultar cliente</a></li>
+            <li><a><b><i class="bi bi-plus-circle"></i></b> Crear cliente</a></li>
+        </ul>
+    </li>
+
+    <li id="opcion3"><a><b><i class="bi bi-boxes"></i></b> Gestión de inventario</a>
+        <ul>
+            <li><a><b><i class="bi bi-search"></i></b> Consultar inventario</a></li>
+        </ul>
+    </li>
+
+</ul>

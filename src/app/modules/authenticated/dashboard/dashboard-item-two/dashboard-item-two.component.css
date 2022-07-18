@@ -1,0 +1,8 @@
+.be-dashboard-item-two-content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}

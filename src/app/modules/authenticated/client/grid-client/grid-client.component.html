@@ -1,0 +1,41 @@
+<div class="be-grid-client-content">
+
+    <div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="Tipo de documento">
+                <th mat-header-cell *matHeaderCellDef>Tipo de documento </th>
+                <td mat-cell *matCellDef="let client">{{client.typeDocumentString | titlecase}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Numero de documento">
+                <th mat-header-cell *matHeaderCellDef>Numero de documento </th>
+                <td mat-cell *matCellDef="let client">{{client.documentNumber}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Nombre">
+                <th mat-header-cell *matHeaderCellDef>Nombre </th>
+                <td mat-cell *matCellDef="let client">{{client.names | titlecase}} {{client.surname | titlecase}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Digito de verificacion">
+                <th mat-header-cell *matHeaderCellDef>Digito de verificacion </th>
+                <td mat-cell *matCellDef="let client">{{client.verificationDigitNit}}</td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="column"></tr>
+            <tr mat-row *matRowDef="let row; columns: column;"></tr>
+
+        </table>
+
+    </div>
+
+    <div>
+        <mat-paginator [pageSizeOptions]="[6, 9, 13]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+</div>

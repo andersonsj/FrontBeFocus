@@ -1,0 +1,12 @@
+<div class="be-Header">
+
+    <div>
+        <img src="assets/image/BeFocusLogoF.png" alt="logoCompañia" class="be-log">
+    </div>
+
+    <div class="be-div-buttonLogin">
+        <button type="button" class="btn btn-secondary" routerLink="/home/auth/login" *ngIf="!activateButton">Inicio de sesión</button>
+        <button type="button" class="btn btn-secondary"  *ngIf="activateButton" (click)="logout()">Cerrar sesión</button>
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+<div class="be-content-client">
+    <div>
+        <app-consult-client></app-consult-client>
+        <hr>
+    </div>
+    <div *ngIf="activateRegister">
+        <app-register-client></app-register-client>
+    </div>
+    <div *ngIf="activateRegister">
+        <hr>
+        <app-location-data-client></app-location-data-client>
+    </div>  
+</div>

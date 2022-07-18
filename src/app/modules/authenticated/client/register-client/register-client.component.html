@@ -1,0 +1,152 @@
+<div class="be-register-client">
+
+    <mat-card class="mat-card-auto">
+        <mat-card-title>Datos basicos del cliente</mat-card-title>
+        <mat-card-content>
+            <form class="be-register-client-form" novalidate [formGroup]="registerForm">
+
+                <div class="form-group">
+                    <div><label>Nombres / Razón social</label></div>
+                    <div><input type="text" class="form-control" formControlName="names"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Primer Apellido</label></div>
+                    <div><input type="text" class="form-control" formControlName="surname"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Segundo Apellido</label></div>
+                    <div><input type="text" class="form-control" formControlName="secondSurname"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Nombre completo</label></div>
+                    <div><input type="text" class="form-control" formControlName="fullNameBusinessName" readonly
+                            value="{{getDataRegisterForm('names') + ' ' + getDataRegisterForm('surname') + ' ' + getDataRegisterForm('secondSurname')  |titlecase}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="datepicker-costumer">
+                        <mat-label>Fecha de expedición documento</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="documentIssueDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="datepicker-costumer">
+                        <mat-label>Fecha de nacimiento</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="birthDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"> </mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <div><label>Digito de verificación NIT</label></div>
+                    <div><input type="number" class="form-control" formControlName="verificationDigitNit"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Persona jurídica</label></div>
+                    <div>
+                        <select name="legalPerson" id="legalPerson" class="form-control" formControlName="legalPerson">
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Genero</label></div>
+                    <div>
+                        <select name="genero" id="genero" class="form-control" formControlName="genderCode">
+                            <option [value]="gender.genderTPId" *ngFor="let gender of genderTP">{{gender.description |
+                                titlecase}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div><label>Estado civil</label></div>
+                    <div>
+                        <select name="estadoCivil" id="estadoCivil" class="form-control"
+                            formControlName="relatioshipStatusCode">
+                            <option [value]="civilStatusTP.civilStatusTPId"
+                                *ngFor="let civilStatusTP of civilStatusTPList">{{civilStatusTP.civilStatusTPDescription
+                                | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Profesión u Oficio</label></div>
+                    <div><input type="text" class="form-control" formControlName="professionJob"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>País de nacimiento</label></div>
+                    <div>
+                        <select name="pais-nacimiento" id="pais-nacimiento" class="form-control"
+                            [(ngModel)]="selectedCountryTP" (change)="selectedCountryChange()"
+                            formControlName="countryOfBirthCode">
+                            <option [value]="country.abbreviation" *ngFor="let country of countryOfBirthTP">
+                                {{country.description | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div><label>Departamento de nacimiento</label></div>
+                    <div>
+                        <select name="departamento-nacimiento" id="departamento-nacimiento" class="form-control"
+                            [(ngModel)]="selectedBirthDepartmentTP" (change)="selectedBirthDepartmentChange()"
+                            formControlName="birthDepartmentCode">
+                            <option [value]="department.departmentTPId" *ngFor="let department of birthDepartment">
+                                {{department.description | titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Ciudad de nacimiento</label></div>
+                    <div>
+                        <select name="ciudad-nacimiento" id="ciudad-nacimiento" class="form-control"
+                            formControlName="cityMunicipalityCode">
+                            <option [value]="city.cityTPId" *ngFor="let city of cityOfBirth">{{city.description |
+                                titlecase}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div><label>Peso</label></div>
+                    <div><input type="text" class="form-control" formControlName="weight"></div>
+                </div>
+                <div class="form-group">
+                    <div><label>Estatura</label></div>
+                    <div><input type="text" class="form-control" formControlName="height"></div>
+                </div>
+
+                <div class="form-group">
+                    <div><label>Grupo sanguíneo</label></div>
+                    <div><input type="text" class="form-control" formControlName="bloodType"></div>
+                </div>
+
+                <div class="form-group">
+
+                </div>
+
+                <div class="form-group">
+                    <label></label>
+                    <div><button class="btn btn-primary" [disabled]="activateButtonUpdate" (click)="updateClient()"><i
+                                class="bi bi-pencil-fill"></i>
+                            Actualizar cliente</button></div>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <div><button class="btn btn-primary" [disabled]="activateButtonRegister" (click)="createClient()"><i
+                                class="bi bi-arrow-up-square-fill"></i> Crear cliente</button></div>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+</div>

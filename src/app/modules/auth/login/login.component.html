@@ -1,0 +1,108 @@
+<div class="be-containerLogin">
+
+    <div class="image">
+        <img src="assets/image/1Home.jpg" alt="Presentacion empresa" class="be-imagenPresentacion">
+    </div>
+
+    <div class="be-divAccion">
+
+        <div class="div-card">
+
+            <form novalidate [formGroup]="loginForm">
+                <div class="form-group">
+                    <h2>Login CRM</h2>
+                </div>
+                <div class="form-group"></div>
+
+                <div class="form-group">
+
+                    <mat-form-field class="example-full-width" appearance="fill" class="inputMat">
+                        <mat-label>Correo electronico</mat-label>
+                        <input matInput placeholder="Ingrese su correo electronico" formControlName="user" type="email"
+                            name="user" id="user" required>
+                    </mat-form-field>
+
+
+                    <!-- <div><label class="form-label">Email</label></div>
+                    <div>
+                        <input type="email" name="user" id="user" class="form-control" formControlName="user" required>
+                        <span *ngIf="validationControles['user'].invalid"></span>
+                        <span
+                            *ngIf="validationControles['user'].invalid && (validationControles['user'].dirty || validationControles['user'].touched)">Campo
+                            obligatorio</span>
+                    </div>
+                    <small id="emailHelp" class="form-text text-muted"></small> -->
+                </div>
+                <div class="form-group">
+
+                    <mat-form-field class="example-full-width" appearance="fill" class="inputMat">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput placeholder="Ingrese su contraseña" formControlName="password" type="password"
+                            name="password" id="password" required>
+                    </mat-form-field>
+
+
+                    <!-- <div><label class="form-label">Contraseña</label></div>
+                    <div><input type="email" name="password" id="password" class="form-control"
+                            formControlName="password" required>
+                        <div
+                            *ngIf="validationControles['password'].invalid && (validationControles['password'].dirty || validationControles['password'].touched)">
+                            Campo obligatorio
+                        </div>
+                    </div> -->
+                </div>
+                <div div class="form-group">
+
+                    <mat-form-field class="example-full-width" appearance="fill" class="inputMat">
+                        <mat-label>Validamos que no eres un robot</mat-label>
+                        <input matInput placeholder="Ingrese su contraseña" type="text" name="inputOperacion"
+                            id="inputOperacion" disabled>
+                    </mat-form-field>
+
+                    <!--   <div><label class="form-label">Validamos que no eres un robot.</label></div>
+                    <div><input type="text" name="inputOperacion" id="inputOperacion" class="form-control" disabled>
+                    </div> -->
+                </div>
+                <div div class="form-group">
+
+                    <mat-form-field class="example-full-width" appearance="fill" class="inputMat">
+                        <mat-label>Ingrese el resultado de la operacion</mat-label>
+                        <input matInput type="text" name="respuestaOperacion" id="respuestaOperacion">
+                    </mat-form-field>
+
+  <!--                   <div><label class="form-label">Ingrese la repúesta de la
+                            operacion</label>
+                    </div>
+                    <div><input type="text" name="respuestaOperacion" id="respuestaOperacion" class="form-control">
+                    </div> -->
+                </div>
+
+                <div class="div-inicio">
+                    <button id="boton-ingresar" class="btn btn-primary" (click)="login()"
+                        [disabled]="loginForm.invalid">Ingresar</button>
+                </div>
+                <div class="div-recuperar">
+                    <button class="btn btn-primary">Recuperar Contraseña</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="div-otrasFormas">
+            <hr>
+        </div>
+
+        <div class="contenedor-otras-formas-autenticacion">
+            <div>
+                <button class="btn btn-lg btn-block btn-primary botones-otras-formas" style="background-color: #dd4b39;"
+                    type="submit"><i class="bi bi-google"></i> Ingresa con google</button>
+            </div>
+            <div>
+                <button class="btn btn-lg btn-block btn-primary mb-2 botones-otras-formas"
+                    style="background-color: #3b5998;" type="submit"><i class="bi bi-facebook"></i> Ingresa con
+                    facebook</button>
+            </div>
+        </div>
+    </div>
+</div>

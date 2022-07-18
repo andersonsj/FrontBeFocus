@@ -1,0 +1,8 @@
+.be-content-client {
+    display: grid;
+    padding: 1%;
+    padding-top: 2%;
+    grid-template-columns: auto;
+    grid-template-rows: 10% 50% 40%;
+    height: 96%;
+}

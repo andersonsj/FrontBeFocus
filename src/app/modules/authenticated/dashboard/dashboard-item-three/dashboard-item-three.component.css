@@ -1,0 +1,10 @@
+.be-dashboard-item-three-content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.chartContainer {
+    margin: 35px auto;
+    padding: 0;
+}

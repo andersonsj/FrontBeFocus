@@ -1,0 +1,15 @@
+.be-Footer{
+    height: 100%;
+    padding: 0.5rem 1rem;
+    background: rgb(17, 43, 60);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    font-weight: 500;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    border: 2px groove white;
+    box-shadow: inset 2px 2px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: calc(0.8em + 0.2vw);
+}

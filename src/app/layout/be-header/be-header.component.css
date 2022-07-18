@@ -1,0 +1,27 @@
+.be-Header {
+    height: 100%;
+    display: grid;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: rgb(17, 43, 60);
+    align-items: center;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    border: 2px groove white;
+    box-shadow: 0px 10px 10px rgb(26, 60, 64);
+}
+
+.be-log {
+    height: auto;
+    max-height: 60px;
+    max-width: 130px;
+    width: 100%;
+}
+
+.be-div-buttonLogin {
+    text-align: end;
+}
+
+button {
+    font-size: calc(0.8em + 0.2vw);
+}

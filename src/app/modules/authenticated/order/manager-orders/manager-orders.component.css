@@ -1,0 +1,10 @@
+.be-manager-orders-content {
+    display: grid;
+    padding: 1%;
+    padding-top: 2%;
+    grid-template-rows: 50% 50%;
+    height: 100%;
+    grid-column-gap: 1%;
+    grid-row-gap: 1%;
+    padding: 2%;
+}
