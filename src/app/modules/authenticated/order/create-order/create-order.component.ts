@@ -104,7 +104,6 @@ export class CreateOrderComponent implements OnInit {
       total: new FormControl('')
     });
     this.pro.push(newProduct);
-    console.log(this.pro);
   }
 
   private buildForm() {
@@ -302,9 +301,6 @@ export class CreateOrderComponent implements OnInit {
 
           if (data.thirdPartyDTOList.length > 0) {
             this.distributorList = data.thirdPartyDTOList;
-
-            console.log('distributorList');
-            console.log(this.distributorList);
           }
 
           break;

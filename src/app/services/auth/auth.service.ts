@@ -6,7 +6,8 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { ResponseLogin } from '@interface/responseLogin';
 import { RequestLogin } from '@interface/requestLogin';
 import { DatauserAuth } from '@interface/dataUserAuth';
-
+import { environment } from 'environments/environment';
+import { ThirdPartyTypeService } from '@services/thirdPartyType/third-party-type.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,21 @@ export class AuthService {
   private userMemory = new BehaviorSubject(this.responseLogin);
   public userCurrent = this.userMemory.asObservable();
 
-  constructor(private http: HttpClient, private router: Router, private notificationService: NotificationService) {
+  private serieListDashboard: number[] = [];
+  private serieListDashboardBehavior = new BehaviorSubject(this.serieListDashboard);
+  public serieListDashboardMemory = this.serieListDashboardBehavior.asObservable();
+
+  private labelListDashboard: number[] = [];
+  private labelListDashboardBehavior = new BehaviorSubject(this.labelListDashboard);
+  public labelListDashboardMemory = this.labelListDashboardBehavior.asObservable();
+
+  constructor(private http: HttpClient, private router: Router, private notificationService: NotificationService, private thirdPartyTypeService: ThirdPartyTypeService) {
   }
 
   public login(requestLogin: RequestLogin): Observable<any> {
     let data: DatauserAuth;
 
-    return this.http.post<any>('http://localhost:8090/api/befocusCrm/login', requestLogin).pipe(
+    return this.http.post<any>(environment.apiUrl + 'befocusCrm/login', requestLogin).pipe(
       map(result => {
         if (result.status.code == '200') {
           if (result.userAuthenticatedDTO.resultDTO.resultCode == 1) {
@@ -31,6 +40,7 @@ export class AuthService {
             this.userMemory.next(result.userAuthenticatedDTO.getAdmCompanyCustomDTO.companyCode);
             this.notificationService.showSuccess(result.userAuthenticatedDTO.getAdmCompanyCustomDTO.companyName, "Bienvenido");
             this.router.navigate(['/home/authenticated/content-user/dashboard']);
+            this.getdataDashBoardItem3();
             return result;
           }
 
@@ -49,6 +59,27 @@ export class AuthService {
     let responseLogin: ResponseLogin = { companyCode: 0 };
     this.userMemory.next(responseLogin);
     this.router.navigate(['/home/auth/login']);
+  }
+
+
+
+  private getdataDashBoardItem3() {
+
+    this.userCurrent.subscribe(data => {
+      this.thirdPartyTypeService.getstatisticsThirdPartyType(String(data)).subscribe(data => {
+        switch (data.getListStatisticsThirdPartyTypeDTO.resultDTO.resultCode) {
+          case 1: {
+            let dataType: any[];
+            dataType = data.getListStatisticsThirdPartyTypeDTO.thirdPartyTypeStatistictsDTOList;
+            dataType.forEach(dato => {
+              this.serieListDashboard.push(dato.countRecords);
+              this.labelListDashboard.push(dato.thirdPartyTypeDescription);
+            });
+            break;
+          }
+        }
+      });
+    });
   }
 
 }

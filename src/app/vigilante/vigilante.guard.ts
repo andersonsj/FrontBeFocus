@@ -18,8 +18,6 @@ export class VigilanteGuard implements CanActivateChild {
       validation = data.companyCode;
     });
 
-    console.log("VigilanteGuard");
-    console.log(validation);
     if (validation == 0) {
       this.router.navigate(["/home/auth/login"]);
       return false;

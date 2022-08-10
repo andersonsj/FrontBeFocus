@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class GenericTpService {
         .append('field1', selectedCountryTP).append('field3', selectedBirthDepartmentTP) ;
     }
 
-    return this.http.get<any>('http://localhost:8090/api/befocusCrm/catalog', { params });
+    return this.http.get<any>(environment.apiUrl + 'befocusCrm/catalog', { params });
   }
 
 }

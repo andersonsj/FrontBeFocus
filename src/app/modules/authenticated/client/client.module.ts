@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SharedModule } from '@shared/shared/shared.module';
+import { CreateClientComponent } from './create-client/create-client.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedModule } from '@shared/shared/shared.module';
     ConsultClientComponent,
     RegisterClientComponent,
     LocationDataClientComponent,
-    GridClientComponent
+    GridClientComponent,
+    CreateClientComponent
   ],
   imports: [
     SharedModule,

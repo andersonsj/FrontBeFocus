@@ -134,16 +134,7 @@ export class RegisterClientComponent implements OnInit {
     this.setDataRegisterForm('relatioshipStatusCode', currentClient.relatioshipStatusCode);
     this.setDataRegisterForm('professionJob', currentClient.professionJob);
     this.setDataRegisterForm('countryOfBirthCode', currentClient.countryOfBirthCode);
-
-    console.log("currentClient.birthDepartmentCode");
-    console.log(currentClient.birthDepartmentCode);
-
     this.setDataRegisterForm('birthDepartmentCode', currentClient.birthDepartmentString);
-
-    console.log("currentClient.cityMunicipalityCode");
-    console.log(currentClient.cityMunicipalityCode);
-
-
     this.setDataRegisterForm('cityMunicipalityCode', currentClient.cityMunicipalityCode);
     this.setDataRegisterForm('weight', currentClient.weight);
     this.setDataRegisterForm('height', currentClient.height);
@@ -151,26 +142,6 @@ export class RegisterClientComponent implements OnInit {
     this.setDataRegisterForm('typeDocumentString', currentClient.typeDocumentString);
     this.setDataRegisterForm('thirdPartyTypeCode', currentClient.thirdPartyTypeCode);
 
-  }
-
-  createClient() {
-    this.clientService.createClient(this.registerForm.value).subscribe(data => {
-
-      switch (data.getThirdPartyDTO.resultDTO.resultCode) {
-        case 1: {
-          this.notificationService.showSuccess('Cliente almacenado', '¡Registro Exitoso!')
-          this.registerForm.reset();
-          break;
-        }
-
-        case 2: {
-          this.notificationService.showError(data.getThirdPartyDTO.resultDTO.message, '¡Registro Fallido!');
-          break;
-        }
-
-      }
-
-    });
   }
 
   updateClient() {

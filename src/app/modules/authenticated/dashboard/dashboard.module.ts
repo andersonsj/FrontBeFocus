@@ -11,6 +11,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { VigilanteGuard } from 'app/vigilante/vigilante.guard';
 
+
+
 @NgModule({
   declarations: [
     DashboardContentComponent,

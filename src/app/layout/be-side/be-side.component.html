@@ -8,10 +8,10 @@
         </ul>
     </li>
 
-    <li id="opcion2" (click)="navegation()"><a><b><i class="bi bi-person-workspace"></i></b> Gestión de clientes</a>
+    <li id="opcion2"><a><b><i class="bi bi-person-workspace"></i></b> Gestión de clientes</a>
         <ul>
-            <li><a><b><i class="bi bi-search"></i></b> Consultar cliente</a></li>
-            <li><a><b><i class="bi bi-plus-circle"></i></b> Crear cliente</a></li>
+            <li (click)="navegation()"><a><b><i class="bi bi-search"></i></b> Consultar cliente</a></li>
+            <li (click)="navegationByCreateClient()"><a><b><i class="bi bi-plus-circle"></i></b> Crear cliente</a></li>
         </ul>
     </li>
 

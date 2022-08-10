@@ -1,0 +1,44 @@
+.be-create-client {
+    display: grid;
+    padding: 1%;
+    padding-top: 2%;
+    height: 100%;
+    overflow: auto;
+}
+
+.be-register-client-form {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 25%;
+    grid-column-gap: 1%;
+    grid-template-rows: auto auto auto auto auto;
+    grid-row-gap: 2%;
+}
+
+.be-interno {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-gap: 1%;
+}
+
+.be-input {
+    width: 100%;
+}
+
+::ng-deep .mat-form-field {
+
+    width: 100%;
+
+}
+
+mat-card {
+    height: 60%;
+}
+
+.mat-card-localizacion {
+    height: 36%;
+}
+
+.button-save {
+        text-align: end;
+}

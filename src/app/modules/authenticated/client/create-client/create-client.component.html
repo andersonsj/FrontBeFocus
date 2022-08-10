@@ -1,0 +1,332 @@
+<div class="be-create-client">
+
+    <div>
+        <mat-card>
+            <mat-card-title>Registre clientes y aliados.</mat-card-title>
+            <mat-card-subtitle>En esta ventana puede almacenar los datos de su cliente y aliados corporativos.
+            </mat-card-subtitle>
+            <mat-card-content>
+                <form novalidate [formGroup]="registerForm" class="be-register-client-form">
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo de tercero</mat-label>
+                            <select matNativeControl required formControlName="thirdPartyTypeCode" required>
+                                <option [value]="thirdPartyType.thirdPartyTypeCode"
+                                    *ngFor="let thirdPartyType of thirdPartyTypeList">
+                                    {{thirdPartyType.thirdPartyTypeDescription | titlecase}}</option>
+                            </select>
+                            <span class="text-danger"
+                                *ngIf="(getTouchedControlRegisterForm('thirdPartyTypeCode') && getStatusControlRegisterForm('thirdPartyTypeCode'))">
+                                Debe seleccionar el tipo de tercero.
+                            </span>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="fill" class="be-input">
+                            <mat-label>Nombres / Razón social</mat-label>
+                            <input matInput title="Nombre o razon social del cliente" formControlName="names" required>
+                            <span class="text-danger"
+                                *ngIf="(getTouchedControlRegisterForm('names') && getStatusControlRegisterForm('names'))">
+                                Debe ingresar nombre o razón social.
+                            </span>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="fill" class="input">
+                            <mat-label>Primer Apellido</mat-label>
+                            <input matInput formControlName="surname" required>
+                            <span class="text-danger"
+                                *ngIf="(getTouchedControlRegisterForm('surname') && getStatusControlRegisterForm('surname'))">
+                                Debe ingresar primer apellido.
+                            </span>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Segundo Apellido</mat-label>
+                            <input matInput formControlName="secondSurname">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nombre completo</mat-label>
+                            <input matInput formControlName="fullNameBusinessName" readonly
+                                value="{{getDataRegisterForm('names') + ' ' + getDataRegisterForm('surname') + ' ' + getDataRegisterForm('secondSurname')  |titlecase}}">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="datepicker-costumer">
+                            <mat-label>Fecha de expedición documento</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="documentIssueDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="datepicker-costumer">
+                            <mat-label>Fecha de nacimiento</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="birthDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"> </mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo de documento</mat-label>
+                            <select matNativeControl required name="tipoDocumento" id="tipoDocumento"
+                                class="form-control" formControlName="typeDocument">
+                                <option [value]="item.documentTypeTPId" *ngFor="let item of documentTypeTP"
+                                    class="option">{{item.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Número documento</mat-label>
+                            <input matInput formControlName="documentNumber" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Digito de verificación NIT</mat-label>
+                            <input matInput formControlName="verificationDigitNit">
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Persona jurídica</mat-label>
+                            <select matNativeControl required formControlName="legalPerson">
+                                <option value="true">Si</option>
+                                <option value="false">No</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Genero</mat-label>
+                            <select matNativeControl required name="genero" id="genero" class="form-control"
+                                formControlName="genderCode">
+                                <option [value]="gender.genderTPId" *ngFor="let gender of genderTP">{{gender.description
+                                    |
+                                    titlecase}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Estado civil</mat-label>
+                            <select matNativeControl required name="estadoCivil" id="estadoCivil" class="form-control"
+                                formControlName="relatioshipStatusCode">
+                                <option [value]="civilStatusTP.civilStatusTPId"
+                                    *ngFor="let civilStatusTP of civilStatusTPList">
+                                    {{civilStatusTP.civilStatusTPDescription
+                                    | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Profesión u Oficio</mat-label>
+                            <input matInput formControlName="professionJob">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>País de nacimiento</mat-label>
+                            <select matNativeControl required name="pais-nacimiento" id="pais-nacimiento"
+                                class="form-control" [(ngModel)]="selectedCountryTP"
+                                (change)="selectedCountryChange(selectedCountryTP)"
+                                formControlName="countryOfBirthCode">
+                                <option [value]="country.abbreviation" *ngFor="let country of countryOfBirthTP">
+                                    {{country.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Departamento de nacimiento</mat-label>
+                            <select matNativeControl required name="departamento-nacimiento"
+                                id="departamento-nacimiento" class="form-control"
+                                [(ngModel)]="selectedBirthDepartmentTP" (change)="selectedBirthDepartmentChange()"
+                                formControlName="birthDepartmentCode">
+                                <option [value]="department.departmentTPId" *ngFor="let department of birthDepartment">
+                                    {{department.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ciudad de nacimiento</mat-label>
+                            <select matNativeControl required name="ciudad-nacimiento" id="ciudad-nacimiento"
+                                class="form-control" formControlName="cityMunicipalityCode">
+                                <option [value]="city.cityTPId" *ngFor="let city of cityOfBirth">{{city.description |
+                                    titlecase}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Peso</mat-label>
+                            <input matInput formControlName="weight">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="be-interno">
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Estatura</mat-label>
+                                <input matInput formControlName="height">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Grupo sanguíneo</mat-label>
+                                <input matInput formControlName="bloodType">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input matInput type="email">
+                        </mat-form-field>
+                    </div>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+        <hr>
+
+        <mat-card class="mat-card-localizacion">
+            <mat-card-title>Datos de localización.</mat-card-title>
+            <mat-card-subtitle>Ingrese los datos de localización de su cliente o aliado comercial.</mat-card-subtitle>
+            <mat-card-content>
+                <form novalidate [formGroup]="createAdressForm" class="be-register-client-form">
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo de dirección</mat-label>
+                            <select matNativeControl name="typeAddressCode" id="typeAddressCode" class="form-control"
+                                formControlName="typeAddressCode" [(ngModel)]="selectedAddressType">
+                                <option [value]="addressType.adressTypesId" *ngFor="let addressType of addressTypes">
+                                    {{addressType.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Dirección</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Dirección estandarizada</mat-label>
+                            <input matInput formControlName="addressStandar">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Codigo postal</mat-label>
+                            <input matInput formControlName="postal_code">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>País</mat-label>
+                            <select matNativeControl required name="country_code" id="country_code" class="form-control"
+                                [(ngModel)]="selectedCountryTPLocalizacion"
+                                (change)="selectedCountryChange(selectedCountryTPLocalizacion)"
+                                formControlName="country_code">
+                                <option [value]="country.abbreviation" *ngFor="let country of countryOfBirthTP">
+                                    {{country.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Departamento</mat-label>
+                            <select matNativeControl required name="departamento" id="departamento" class="form-control"
+                                [(ngModel)]="selectedBirthDepartmentTPLocalizacion"
+                                (change)="selectedBirthDepartmentChange()" formControlName="state_code">
+                                <option [value]="department.departmentTPId" *ngFor="let department of birthDepartment">
+                                    {{department.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ciudad</mat-label>
+                            <select matNativeControl required name="ciudad" id="ciudad" class="form-control"
+                                formControlName="city_code">
+                                <option [value]="city.cityTPId" *ngFor="let city of cityOfBirth">{{city.description |
+                                    titlecase}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Localidad</mat-label>
+                            <input matInput name="localidad" id="localidad" type="text">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Barrio</mat-label>
+                            <input matInput formControlName="neighborhood" name="barrio" id="barrio" type="text">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                    </div>
+
+                    <div class="form-group">
+                    </div>
+
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" (click)="createClient()" class="button-save"
+                            [disabled]="!getStatusRegisterForm() && !getStatusCreateAdressForm()"><i class="bi bi-arrow-up-square-fill"></i> Guardar
+                            datos</button>
+                    </div>
+
+                </form>
+            </mat-card-content>
+
+        </mat-card>
+
+    </div>
+
+</div>

@@ -45,6 +45,7 @@ ul.acorh li li a {
     border: 0;
     border-bottom: 1px solid #ccc;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 ul.acorc li li:last-child a {

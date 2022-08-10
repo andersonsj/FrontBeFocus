@@ -126,10 +126,6 @@ export class GetOrderComponent implements OnInit {
   }
 
   assignValuesToControlsOrder(data: any) {
-
-    console.log("assignValuesToControlsOrder");
-    console.log(data.getOrderCRMDTO);
-
     this.getOrderForm.controls['typeDocument'].setValue(data.getOrderCRMDTO.typeDocument);
     this.getOrderForm.controls['typeDocumentString'].setValue(data.getOrderCRMDTO.typeDocumentString);
     this.getOrderForm.controls['documentNumber'].setValue(data.getOrderCRMDTO.documentNumber);
@@ -153,8 +149,6 @@ export class GetOrderComponent implements OnInit {
           break;
         }
       }
-
-      console.log(data);
     },
       error => {
         if (error.status == 400) {
@@ -165,14 +159,7 @@ export class GetOrderComponent implements OnInit {
   }
 
   assignValuesToControlsOrderDetail(data: any) {
-
-    console.log("assignValuesToControlsOrderDetail");
-    console.log(data.orderDetailCRMDTOList);
-
     this.listProducts = data.orderDetailCRMDTOList;
-    console.log("assignValuesToControlsOrderDetail");
-    console.log(this.listProducts);
-    // console.log(this.listProducts[0].productCode);
   }
 
 }

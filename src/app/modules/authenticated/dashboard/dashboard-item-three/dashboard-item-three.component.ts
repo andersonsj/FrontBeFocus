@@ -1,12 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexTheme, ApexTitleSubtitle } from 'ng-apexcharts';
+import { ResponseLogin } from '@interface/responseLogin';
+import { AuthService } from '@services/auth/auth.service';
+import { NotificationService } from '@services/notifications/notification.service';
+import { ThirdPartyTypeService } from '@services/thirdPartyType/third-party-type.service';
+import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ApexTitleSubtitle } from 'ng-apexcharts';
 import { ChartComponent } from "ng-apexcharts";
 
 export type ChartOptions = {
-  series?: ApexNonAxisChartSeries;
-  chart?: ApexChart;
-  responsive?: ApexResponsive[];
-  labels?: any;
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
   title: ApexTitleSubtitle;
 };
 
@@ -20,17 +24,28 @@ export class DashboardItemThreeComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
 
-  constructor(
-  ) {
+  public currentUserMemory!: ResponseLogin;
+
+  constructor(private thirdPartyTypeService: ThirdPartyTypeService, private authService: AuthService, private notificationService: NotificationService) {
+
+    let seriesChart: number[] = [];
+    let labelsChart: number[] = [];
+
+    this.authService.serieListDashboardMemory.subscribe(data => {
+      seriesChart = data;
+    });
+
+    this.authService.labelListDashboardMemory.subscribe(data => {
+      labelsChart = data;
+    });
+
     this.chartOptions = {
-      series: [12, 12, 12, 12, 12, 12, 12, 14],
+      series: seriesChart,
       chart: {
-       width: "82%",
+        width: "82%",
         type: "pie"
       },
-      labels: [
-        "Cliente directo", "Distribuidor Viralizador", "Distribuidor Validador", "Distribuidor Vendedor", "Distribuidor Apertura Mercador", "Colaborador", "Proveedor", "Vendedor"
-      ],
+      labels: labelsChart,
       title: {
         text: "Porcentaje de terceros registrados por tipo"
       },
@@ -47,11 +62,12 @@ export class DashboardItemThreeComponent implements OnInit {
           }
         }
       ]
-    }
+    };
 
   }
 
   ngOnInit(): void {
   }
+
 
 }

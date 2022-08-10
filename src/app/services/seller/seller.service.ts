@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotificationService } from './../notifications/notification.service';
 import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class SellerService {
 
   public getSellerCRMListByCompany(companyCode: string): Observable<any> {
     let params = new HttpParams().append('companyCode', companyCode);
-    return this.http.post<any>('http://localhost:8090/api/befocusCrm/getSellerCRMListByCompany', params);
+    return this.http.post<any>(environment.apiUrl + 'befocusCrm/getSellerCRMListByCompany', params);
   }
 
 }

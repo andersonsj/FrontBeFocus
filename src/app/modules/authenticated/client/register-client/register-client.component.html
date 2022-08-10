@@ -129,20 +129,16 @@
                     <div><input type="text" class="form-control" formControlName="bloodType"></div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group"></div>
 
-                </div>
+                <div class="form-group"></div>
 
                 <div class="form-group">
-                    <label></label>
-                    <div><button class="btn btn-primary" [disabled]="activateButtonUpdate" (click)="updateClient()"><i
-                                class="bi bi-pencil-fill"></i>
-                            Actualizar cliente</button></div>
-                </div>
-                <div class="form-group">
-                    <label></label>
-                    <div><button class="btn btn-primary" [disabled]="activateButtonRegister" (click)="createClient()"><i
-                                class="bi bi-arrow-up-square-fill"></i> Crear cliente</button></div>
+                    <div>
+                        <button mat-raised-button color="primary" [disabled]="activateButtonUpdate"
+                            (click)="updateClient()" class="button-save">
+                            <i class="bi bi-arrow-up-square-fill"></i> Actualizar cliente</button>
+                    </div>
                 </div>
 
             </form>

@@ -23,7 +23,6 @@ export class GridClientComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit');
     this.paginator._intl.itemsPerPageLabel = 'Numero de clientes por pagina';
     this.paginator._intl.firstPageLabel = 'Primera pagina';
     this.paginator._intl.lastPageLabel = 'Ultima pagina';

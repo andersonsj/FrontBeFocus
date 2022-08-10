@@ -22,14 +22,10 @@ export class BeSideComponent implements OnInit {
   validationClient() {
 
     this.authService.userCurrent.subscribe(data => {
-      console.log("validationClient side");
-      console.log(data);
       if (data.companyCode == 0) {
         this.activateButton = false;
-        console.log(this.activateButton);
       } else {
         this.activateButton = true;
-        console.log(this.activateButton);
       }
 
     });
@@ -37,6 +33,10 @@ export class BeSideComponent implements OnInit {
 
   navegation() {
     this.router.navigate(['/home/authenticated/content-user/content-client']);
+  }
+
+  navegationByCreateClient(){
+    this.router.navigate(['/home/authenticated/content-user/create-client']);
   }
 
   navegationBydashboard() {

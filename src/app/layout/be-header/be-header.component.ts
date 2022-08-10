@@ -23,9 +23,6 @@ export class BeHeaderComponent implements OnInit {
 
     this.authService.userCurrent.subscribe(data => {
 
-      console.log("validationClient");
-      console.log(data.companyCode);
-
       if (data.companyCode == 0) {
         this.activateButton = false;
       } else {
@@ -36,7 +33,6 @@ export class BeHeaderComponent implements OnInit {
   }
 
   logout() {
-    console.log("logout");
     this.authService.logout();
   }
 
