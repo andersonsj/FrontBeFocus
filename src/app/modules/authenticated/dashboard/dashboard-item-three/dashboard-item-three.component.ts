@@ -42,7 +42,7 @@ export class DashboardItemThreeComponent implements OnInit {
     this.chartOptions = {
       series: seriesChart,
       chart: {
-        width: "82%",
+        width: "80%",
         type: "pie"
       },
       labels: labelsChart,

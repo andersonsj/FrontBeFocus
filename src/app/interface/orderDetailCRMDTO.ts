@@ -6,4 +6,5 @@ export interface OrderDetailCRMDTO {
     price?: Number;
     total?: Number;
     productName?: String;
+    discountPercent?: Number;
 } 

@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BeSideComponent } from './layout/be-side/be-side.component';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { MaterialModule } from '@modules/material/material.module';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { MaterialModule } from '@modules/material/material.module';
     }),
     BrowserAnimationsModule,
     NgxBootstrapIconsModule.pick(allIcons),
-    MaterialModule
+    MaterialModule,
+    FontAwesomeModule
   ],
   providers: [VigilanteGuard],
   bootstrap: [AppComponent]

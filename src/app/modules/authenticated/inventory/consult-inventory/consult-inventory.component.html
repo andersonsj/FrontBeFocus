@@ -1,0 +1,67 @@
+<div class="be-consult-inventory">
+
+    <div>
+        <mat-card>
+            <mat-card-title>Consulta de productos</mat-card-title>
+            <mat-card-subtitle>En esta ventana puede visualizar un listado con sus productos</mat-card-subtitle>
+            <mat-card-content>
+
+                <div class="card">
+
+                    <p-table #dt1 dataKey="id" [value]="productList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [rowsPerPageOptions]="[10,25,50]" [globalFilterFields]="['name','country.name','representative.name','status']">
+
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex">
+                                <span class="p-input-icon-left p-ml-auto">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                                        placeholder="Search keyword" />
+                                </span>
+                            </div>
+                        </ng-template>
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="productCode">Codigo producto <p-sortIcon field="productCode">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="name">Descripción <p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="active">Activo <p-sortIcon field="active"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="code">Codigo <p-sortIcon field="code"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="type">Tipo <p-sortIcon field="type"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="available_quantity">Cantidad Disponible <p-sortIcon
+                                        field="available_quantity"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                            <tr>
+                                <td>{{product.productCode}}</td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.active == true ? 'Si':'NO'}}</td>
+                                <td>{{product.code}}</td>
+                                <td>{{product.type}}</td>
+                                <td>{{product.available_quantity}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorleft">
+                            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorright">
+                            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                    </p-table>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

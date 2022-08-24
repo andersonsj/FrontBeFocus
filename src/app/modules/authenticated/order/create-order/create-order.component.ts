@@ -17,6 +17,7 @@ import { StageProcessCRM } from '@interface/stageProcessCRM';
 import { OrderDetailCRMDTO } from '@interface/orderDetailCRMDTO';
 import { RequestOrderCRMDTO } from '@interface/requestOrderCRMDTO';
 import { RequestGetClient } from '@interface/requestGetClient';
+import { ProductThirdPartyDiscountService } from '@services/productThirdPartyDiscount/product-third-party-discount.service';
 
 @Component({
   selector: 'app-create-order',
@@ -48,10 +49,13 @@ export class CreateOrderComponent implements OnInit {
   public orderDetailsFormAll!: FormGroup;
   public stageProcessCRM: StageProcessCRM[] = [];
 
+  public activateButtonAdd: Boolean = true;
+
   constructor(private formBuilder: FormBuilder, private cacheTPService: CacheTPService, private authService: AuthService,
     private managerOrdersService: ManagerOrdersService, private productService: ProductService,
     private notificationService: NotificationService, private sellerService: SellerService, private clientService: ClientService,
-    private distributorService: DistributorService, private stageProcessCRMService: StageProcessCRMService) { }
+    private distributorService: DistributorService, private stageProcessCRMService: StageProcessCRMService,
+    private productThirdPartyDiscountService: ProductThirdPartyDiscountService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -85,12 +89,17 @@ export class CreateOrderComponent implements OnInit {
       productCode: ['', Validators.required],
       quantity: [''],
       price: new FormControl(''),
-      total: new FormControl('')
+      total: new FormControl(''),
+      discountPercent: new FormControl('')
     });
   }
 
   get pro() {
     return this.form.controls["productsAll"] as FormArray;
+  }
+
+  getStatusOrderForm(nameControl: string) {
+    return this.orderForm.controls[nameControl].errors;
   }
 
   addPro() {
@@ -101,7 +110,8 @@ export class CreateOrderComponent implements OnInit {
       unitsAvailable: new FormControl(''),
       quantity: new FormControl(''),
       price: new FormControl(''),
-      total: new FormControl('')
+      total: new FormControl(''),
+      discountPercent: new FormControl('')
     });
     this.pro.push(newProduct);
   }
@@ -139,6 +149,9 @@ export class CreateOrderComponent implements OnInit {
               this.notificationService.showSuccess(data.getOrderCRMDTO.orderCode, 'Orden Creada');
               for (let i = 0; i <= this.pro.controls.length - 1; i++) {
 
+                console.log("console.log(this.pro);");
+                console.log(this.pro);
+
                 let orderDetailCRMDTO: OrderDetailCRMDTO;
                 orderDetailCRMDTO = {
                   companyCode: this.orderForm.controls['companyCode'].value,
@@ -146,7 +159,8 @@ export class CreateOrderComponent implements OnInit {
                   orderCode: data.getOrderCRMDTO.orderCode,
                   quantity: this.pro.controls[i].get('quantity')?.value,
                   price: this.pro.controls[i].get('price')?.value,
-                  total: this.pro.controls[i].get('quantity')?.value * this.pro.controls[i].get('price')?.value
+                  total: this.pro.controls[i].get('quantity')?.value * this.pro.controls[i].get('price')?.value,
+                  discountPercent: this.pro.controls[i].get('discountPercent')?.value
                 }
 
                 this.createDetailOrder(orderDetailCRMDTO);
@@ -214,6 +228,48 @@ export class CreateOrderComponent implements OnInit {
     );
   }
 
+  /**Consulta el descuento de un producto*/
+  getDiscountForProduct(index: number) {
+
+    this.productThirdPartyDiscountService.getDiscountForProductByCompanyCodeAndDocumentNumberAndProductCodeAndTypeDocument(
+      this.orderForm.get('companyCode')?.value,
+      this.orderForm.get('documentNumber')?.value,
+      this.pro.controls[index].get('productCode')?.value,
+      this.orderForm.get('typeDocument')?.value
+    ).subscribe(data => {
+
+      console.log("getDiscountForProduct");
+      console.log(data);
+
+      switch (data.status.code) {
+        
+        case '200': {
+
+          switch (data.getProductThirdPartyDiscountDTO.resultDTO.resultCode) {
+            case 1: {
+              this.pro.controls[index].get('discountPercent')?.setValue(data.getProductThirdPartyDiscountDTO.discountPercent);
+
+              console.log(this.form);
+
+              this.notificationService.showInfo("El cliente tiene asociado un porcentaje en el producto ",
+              "Porcentaje de descuento encontrado");
+              break;
+            }
+            case 2: {
+              this.pro.controls[index].get('discountPercent')?.setValue(0);
+              this.notificationService.showInfo("El cliente no tiene asociado un porcentaje en el producto ",
+              "Porcentaje de descuento no encontrado");
+              break;
+            }
+          }
+
+          break;
+        }
+      }
+    });
+
+  }
+
   getSellerCRMListByCompany(companyCode: string) {
     this.sellerService.getSellerCRMListByCompany(companyCode).subscribe(
       data => {
@@ -256,6 +312,7 @@ export class CreateOrderComponent implements OnInit {
     }
 
     this.clientService.getClient(requestGetClient, true).subscribe(data => {
+      this.activateButtonAdd = false;
     });
 
     this.clientService.currentClientData.subscribe(data => {

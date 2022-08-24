@@ -51,5 +51,9 @@ export class BeSideComponent implements OnInit {
     this.router.navigate(['/home/authenticated/content-user/create-order']);
   }
 
+  navegationByConsultInventory() {
+    this.router.navigate(['/home/authenticated/content-user/consult-inventory']);
+  }
+
 
 }

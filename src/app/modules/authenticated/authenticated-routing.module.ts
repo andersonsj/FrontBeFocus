@@ -7,6 +7,7 @@ import { GridClientComponent } from './client/grid-client/grid-client.component'
 import { ManagerOrdersComponent } from './order/manager-orders/manager-orders.component';
 import { CreateOrderComponent } from './order/create-order/create-order.component';
 import { CreateClientComponent } from './client/create-client/create-client.component';
+import { ConsultInventoryComponent } from './inventory/consult-inventory/consult-inventory.component';
 
 const routes: Routes = [
     {
@@ -37,6 +38,10 @@ const routes: Routes = [
             {
                 path: 'create-client',
                 component: CreateClientComponent
+            },
+            {
+                path: 'consult-inventory',
+                component: ConsultInventoryComponent
             }
         ]
     }

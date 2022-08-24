@@ -23,7 +23,11 @@ label {
     cursor: pointer;
 }
 
-.title{
+.title {
     display: grid;
     grid-template-columns: 80% 20%;
+}
+
+.add-task {
+    font-size: 0.6vw;
 }

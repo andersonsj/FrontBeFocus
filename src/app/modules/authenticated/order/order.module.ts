@@ -5,6 +5,7 @@ import { GetOrderComponent } from './get-order/get-order.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { NgxPrintModule } from 'ngx-print';
 import { SharedModule } from '@shared/shared/shared.module';
+import { MaterialModule } from '@modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '@shared/shared/shared.module';
   imports: [
     SharedModule,
     MatCardModule,
-    NgxPrintModule
+    NgxPrintModule,
+    MaterialModule
   ]
 })
 export class OrderModule { }

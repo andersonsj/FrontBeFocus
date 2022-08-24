@@ -8,6 +8,7 @@ import { ContentUserComponent } from './content-user/content-user.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { OrderModule } from './order/order.module';
 import { ClientModule } from './client/client.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 @NgModule({
   declarations: [ContentUserComponent],
@@ -18,7 +19,8 @@ import { ClientModule } from './client/client.module';
     MaterialModule,
     DashboardModule,
     OrderModule,
-    ClientModule
+    ClientModule,
+    InventoryModule
   ],
   providers: [VigilanteGuard]
 })
