@@ -37,3 +37,7 @@
     grid-column-gap: 1%;
     grid-row-gap: 2%;
 }
+
+.form-control{
+    font-size: calc(0.8em + 0.2vw);
+}

@@ -219,6 +219,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   calculateTotal(index: number) {
+    this.pro.controls[index].get('companyCode')?.setValue(this.currentClient);
     this.products.forEach(
       product => {
         if (this.pro.controls[index].get('productCode')?.value == product.productCode) {
@@ -242,7 +243,7 @@ export class CreateOrderComponent implements OnInit {
       console.log(data);
 
       switch (data.status.code) {
-        
+
         case '200': {
 
           switch (data.getProductThirdPartyDiscountDTO.resultDTO.resultCode) {
@@ -252,13 +253,13 @@ export class CreateOrderComponent implements OnInit {
               console.log(this.form);
 
               this.notificationService.showInfo("El cliente tiene asociado un porcentaje en el producto ",
-              "Porcentaje de descuento encontrado");
+                "Porcentaje de descuento encontrado");
               break;
             }
             case 2: {
               this.pro.controls[index].get('discountPercent')?.setValue(0);
               this.notificationService.showInfo("El cliente no tiene asociado un porcentaje en el producto ",
-              "Porcentaje de descuento no encontrado");
+                "Porcentaje de descuento no encontrado");
               break;
             }
           }
@@ -391,6 +392,24 @@ export class CreateOrderComponent implements OnInit {
     this.stageProcessCRMService.getListStageProcessCRM(companyCode, processCode).subscribe(data => {
       this.stageProcessCRM = data.getListStageProcessCRMDTO.stageProcessCRMList;
     });
+  }
+
+  /**Permite activar o desactivar el boton de guardar orden en funcion de los datos diligenciados */
+  activateButtonSaveOrder(): Boolean {
+
+    let disableButtonSaveOrder: Boolean = true;
+
+    if (!this.activateButtonAdd) {
+      this.pro.controls.forEach(control => {
+        if (control.get('total')?.value != null && control.get('price')?.value != '') {
+          disableButtonSaveOrder = false;
+        }else{
+          disableButtonSaveOrder = true;
+        }
+      });
+    }
+
+    return disableButtonSaveOrder;
   }
 
 
