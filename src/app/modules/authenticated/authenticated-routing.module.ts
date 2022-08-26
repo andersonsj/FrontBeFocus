@@ -8,6 +8,7 @@ import { ManagerOrdersComponent } from './order/manager-orders/manager-orders.co
 import { CreateOrderComponent } from './order/create-order/create-order.component';
 import { CreateClientComponent } from './client/create-client/create-client.component';
 import { ConsultInventoryComponent } from './inventory/consult-inventory/consult-inventory.component';
+import { ProductDiscountComponent } from './inventory/product-discount/product-discount.component';
 
 const routes: Routes = [
     {
@@ -42,6 +43,10 @@ const routes: Routes = [
             {
                 path: 'consult-inventory',
                 component: ConsultInventoryComponent
+            },
+            {
+                path: 'create-product-discount',
+                component: ProductDiscountComponent
             }
         ]
     }

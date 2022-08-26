@@ -55,5 +55,8 @@ export class BeSideComponent implements OnInit {
     this.router.navigate(['/home/authenticated/content-user/consult-inventory']);
   }
 
+  navegationByCreateProductDiscount() {
+    this.router.navigate(['/home/authenticated/content-user/create-product-discount']);
+  }
 
 }

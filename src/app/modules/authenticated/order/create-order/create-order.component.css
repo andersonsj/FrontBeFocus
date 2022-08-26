@@ -33,11 +33,22 @@
 
 .be-create-orders-div-row2 {
     display: grid;
-    grid-template-columns: auto auto auto 7% 7% auto auto;
+    grid-template-columns: 10% auto 10% 7% 7% 10% 10%;
     grid-column-gap: 1%;
     grid-row-gap: 2%;
 }
 
 .form-control{
     font-size: calc(0.8em + 0.2vw);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -7,10 +7,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { ProductDiscountComponent } from './product-discount/product-discount.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    ConsultInventoryComponent
+    ConsultInventoryComponent,
+    ProductDiscountComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +25,11 @@ import { ButtonModule } from 'primeng/button';
     MatTableModule,
     MatSortModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class InventoryModule { }

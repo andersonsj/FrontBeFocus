@@ -1,0 +1,26 @@
+.be-product-discount {
+    display: grid;
+    padding: 1%;
+    padding-top: 2%;
+    height: 100%;
+    overflow: auto;
+}
+
+.be-createProductDiscountForm {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 25%;
+    grid-column-gap: 1%;
+    grid-template-rows: auto auto auto auto auto;
+    grid-row-gap: 2%;
+}
+
+
+::ng-deep .mat-form-field {
+
+    width: 100%;
+
+}
+
+.button-save {
+    text-align: end;
+}

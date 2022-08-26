@@ -1,0 +1,87 @@
+<div class="be-product-discount">
+    <div>
+        <mat-card>
+            <mat-card-title>Descuento por producto.</mat-card-title>
+            <mat-card-subtitle>En esta ventana podra asignar descuentos por producto a sus clientes o aliados.
+            </mat-card-subtitle>
+            <mat-card-content>
+                <form [formGroup]="createProductDiscountForm" class="be-createProductDiscountForm">
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo de documento</mat-label>
+                            <select matNativeControl required name="tipoDocumento" id="tipoDocumento"
+                                class="form-control" formControlName="typeDocument">
+                                <option [value]="item.documentTypeTPId" *ngFor="let item of documentTypeTP"
+                                    class="option">{{item.description | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="be-input">
+                            <mat-label>Número documento</mat-label>
+                            <input matInput formControlName="documentNumber" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Producto</mat-label>
+                            <select matNativeControl required name="productCode" id="productCode" class="form-control"
+                                formControlName="productCode">
+                                <option [value]="item.productCode" *ngFor="let item of productList" class="option">
+                                    {{item.name | titlecase}}</option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="be-input">
+                            <mat-label>Porcentaje de descuento</mat-label>
+                            <input matInput formControlName="discountPercent" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="be-input">
+                            <mat-label>Unidades de aplicación</mat-label>
+                            <input matInput formControlName="available_quantity" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="datepicker-costumer">
+                            <mat-label>Fecha de inicio descuento</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="effectiveEndDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="datepicker-costumer">
+                            <mat-label>Fecha de fin descuento</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="effectiveStartDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"> </mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="be-input">
+                            <mat-label>Motivo descuento</mat-label>
+                            <input matInput formControlName="description" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" (click)="createProductDiscount()" class="button-save"><i class="bi bi-arrow-up-square-fill"></i> Crear
+                            descuento</button>
+                    </div>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
