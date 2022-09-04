@@ -61,3 +61,17 @@ ul.acorh li a:hover {
     background: #666;
     color: #fff;
 }
+
+.p-sidebar {
+    background: rgb(17, 43, 60);
+}
+
+::ng-deep .p-sidebar {
+    background: rgb(17, 43, 60);
+}
+
+::ng-deep .p-button {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}

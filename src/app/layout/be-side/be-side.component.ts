@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "@services/auth/auth.service";
+import { PrimeNGConfig } from "primeng/api";
 
 @Component({
   selector: 'app-be-side',
@@ -13,10 +14,13 @@ export class BeSideComponent implements OnInit {
   expandedIndex = 0;
   public activateButton: Boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  visibleSidebar1:any;
+
+  constructor(private authService: AuthService, private router: Router, private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(): void {
     this.validationClient();
+    this.primengConfig.ripple = true;
   }
 
   validationClient() {

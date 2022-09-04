@@ -5,7 +5,7 @@
         'header header'
         'sidebar main'
         'footer footer';
-    grid-template-columns: 18% 82%;
+    grid-template-columns: 3% auto;
     /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));*/
     grid-template-rows: 80px 87vh auto;
     font-family: Roboto, "Helvetica Neue", sans-serif;

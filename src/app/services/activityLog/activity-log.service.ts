@@ -13,7 +13,7 @@ export class ActivityLogService {
 
   public getActivityLog(userCode: string, companyCode: string): Observable<any> {
     let params = new HttpParams().append('userCode', userCode).append('companyCode', companyCode);
-    return this.http.get<any>(environment.apiUrl + 'befocusCrm/getActivityLog', { params });
+    return this.http.get<any>(environment.apiUrl + 'befocusCrm/getActivitiesLog', { params });
   }
 
   public createActivityLog(activityLogDTO: ActivityLogDTO): Observable<any> {

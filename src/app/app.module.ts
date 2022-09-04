@@ -14,6 +14,9 @@ import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { MaterialModule } from '@modules/material/material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     NgxBootstrapIconsModule.pick(allIcons),
     MaterialModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SidebarModule,
+    ButtonModule
   ],
   providers: [VigilanteGuard],
   bootstrap: [AppComponent]
