@@ -1,30 +1,30 @@
 <ul class="acorh" *ngIf="activateButton">
 
     <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
-        <li id="opcion1" (click)="navegationBydashboard()"><a ><b><i class="bi bi-clipboard-data"></i></b> Dashboard</a>
+        <li id="opcion1" (click)="navegationBydashboard(); visibleSidebar1 = false"><a ><b><i class="bi bi-clipboard-data"></i></b> Dashboard</a>
         </li>
         <li id="opcion1"><a><b><i class="bi bi-book"></i></b> Documentos comerciales</a>
             <ul>
-                <li (click)=" navegationByManagerOrders()"><a><b><i class="bi bi-search"></i></b> Consultar documento</a></li>
-                <li (click)="navegationByCreateOrders()"><a><b><i class="bi bi-plus-circle"></i></b> Crear documento</a></li>
+                <li (click)=" navegationByManagerOrders(); visibleSidebar1 = false"><a><b><i class="bi bi-search"></i></b> Consultar documento</a></li>
+                <li (click)="navegationByCreateOrders(); visibleSidebar1 = false"><a><b><i class="bi bi-plus-circle"></i></b> Crear documento</a></li>
             </ul>
         </li>
     
         <li id="opcion2"><a><b><i class="bi bi-person-workspace"></i></b> Gestión de clientes</a>
             <ul>
-                <li (click)="navegation()"><a><b><i class="bi bi-search"></i></b> Consultar cliente</a></li>
-                <li (click)="navegationByCreateClient()"><a><b><i class="bi bi-plus-circle"></i></b> Crear cliente</a></li>
+                <li (click)="navegation(); visibleSidebar1 = false"><a><b><i class="bi bi-search"></i></b> Consultar cliente</a></li>
+                <li (click)="navegationByCreateClient(); visibleSidebar1 = false"><a><b><i class="bi bi-plus-circle"></i></b> Crear cliente</a></li>
             </ul>
         </li>
     
         <li id="opcion3"><a><b><i class="bi bi-boxes"></i></b> Gestión de inventario</a>
             <ul>
-                <li (click)="navegationByConsultInventory()"><a><b><i class="bi bi-search"></i></b> Consultar inventario</a></li>
-                <li (click)="navegationByCreateProductDiscount()"><a><b><i class="bi bi-plus-circle"></i></b> Crear descuento por producto</a></li>
+                <li (click)="navegationByConsultInventory(); visibleSidebar1 = false"><a><b><i class="bi bi-search"></i></b> Consultar inventario</a></li>
+                <li (click)="navegationByCreateProductDiscount(); visibleSidebar1 = false"><a><b><i class="bi bi-plus-circle"></i></b> Crear descuento por producto</a></li>
             </ul>
         </li>
     </p-sidebar>
 
-    <p-button type="button" class="mr-2" (click)="visibleSidebar1 = true" icon="pi pi-th-large"></p-button>
+    <p-button type="button" class="mr-2" (click)="visibleSidebar1 = true" icon="bi bi-list"></p-button>
 
 </ul>

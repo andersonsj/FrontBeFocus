@@ -289,7 +289,7 @@ export class CreateOrderComponent implements OnInit {
     this.sellersList.forEach(seller => {
       if (seller.identification == this.selectedSeller) {
         this.nameSellerSelected = seller.first_name + ' ' + seller.last_name;
-        this.orderForm.controls['sellerID'].setValue(seller.id);
+        //this.orderForm.controls['sellerID'].setValue(seller.id);
       }
     });
   }
@@ -378,10 +378,20 @@ export class CreateOrderComponent implements OnInit {
   }
 
   calculateTotalOrder() {
+    let totalForProduct : number = 0;
+    let discount: number = 0;
     this.totalOrder = 0;
 
     this.pro.controls.forEach(control => {
-      this.totalOrder = this.totalOrder + (control.get('price')?.value * control.get('quantity')?.value);
+
+      totalForProduct = ((control.get('price')?.value * control.get('quantity')?.value));
+
+      if (control.get('discountPercent')?.value != null && control.get('discountPercent')?.value != undefined &&  control.get('discountPercent')?.value > 0) {
+        discount = (totalForProduct * control.get('discountPercent')?.value) / 100;
+      }
+
+      this.totalOrder = this.totalOrder + (totalForProduct - discount);
+
     });
 
     this.orderForm.get('totalValue')?.setValue(this.totalOrder);
@@ -403,7 +413,7 @@ export class CreateOrderComponent implements OnInit {
       this.pro.controls.forEach(control => {
         if (control.get('total')?.value != null && control.get('price')?.value != '') {
           disableButtonSaveOrder = false;
-        }else{
+        } else {
           disableButtonSaveOrder = true;
         }
       });

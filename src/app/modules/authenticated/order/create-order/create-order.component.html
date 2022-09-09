@@ -113,7 +113,6 @@
                                     <select name="idSeller" id="idSeller" class="form-control"
                                         (change)="assignSelectedSellerName()" [(ngModel)]="selectedSeller"
                                         formControlName="sellerID" tabindex="5">
-                                        <option value=""></option>
                                         <option [value]="seller.identification" *ngFor="let seller of sellersList">
                                             {{seller.identification}}
                                         </option>
@@ -276,7 +275,7 @@
                     <div class="form-group">
                         <div><label></label></div>
                         <div><button class="btn btn-primary" (click)="createOrder()"
-                                [disabled]="activateButtonSaveOrder()">Guardar Orden</button></div>
+                                [disabled]="activateButtonSaveOrder()"><i class="bi bi-save"></i> Guardar Orden</button></div>
                     </div>
 
                 </div>
