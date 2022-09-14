@@ -83,7 +83,7 @@ export class CacheTPService {
   private useServiceForconsultTpDictionaries(dictionaryTP: string) {
     this.genericTpService.consultdictionaryTP(dictionaryTP, this.selectedCountryTP, this.selectedBirthDepartmentTP).subscribe(data => {
       if (data.status.code == 200) {
-        if (data.catalogs.length > 0) {
+        if (data.catalogsCRM.length > 0) {
           this.filterData(data, dictionaryTP);
         }
       }
@@ -102,39 +102,42 @@ export class CacheTPService {
     let adressTypes: AdressTypes;
     let civilStatusTP: CivilStatusTP;
 
-    for (let i = 0; i < data.catalogs.length; i++) {
+    for (let i = 0; i < data.catalogsCRM.length; i++) {
+
+      let elementDictionary: any = data.catalogsCRM[i];
+
       if (dictionaryTP == 'tipo_documento') {
-        documentTypeTP = { documentTypeTPId: data.catalogs[i].field1, description: data.catalogs[i].field3 };
+        documentTypeTP = { documentTypeTPId: elementDictionary.parameter1, description: elementDictionary.parameter3 };
         this.documentTypeTP.push(documentTypeTP);
       }
 
       if (dictionaryTP == 'genero') {
-        genderTP = { description: data.catalogs[i].field3, genderTPId: data.catalogs[i].field1 };
+        genderTP = { description: elementDictionary.parameter3, genderTPId: elementDictionary.parameter1 };
         this.genderTP.push(genderTP);
       }
 
       if (dictionaryTP == 'estado_civil') {
-        civilStatusTP = {civilStatusTPId: data.catalogs[i].field1, civilStatusTPDescription: data.catalogs[i].field3};
+        civilStatusTP = { civilStatusTPId: elementDictionary.parameter1, civilStatusTPDescription: elementDictionary.parameter3 };
         this.civilStatusTP.push(civilStatusTP);
       }
 
       if (dictionaryTP == 'pais') {
-        countryTp = { abbreviation: data.catalogs[i].field1, description: data.catalogs[i].field3 };
+        countryTp = { abbreviation: elementDictionary.parameter1, description: elementDictionary.parameter3 };
         this.countryOfBirthTP.push(countryTp);
       }
 
       if (dictionaryTP == 'departamentos') {
-        departmentTP = { abbreviation: data.catalogs[i].field5, description: data.catalogs[i].field4, departmentTPId: data.catalogs[i].field3 };
+        departmentTP = { abbreviation: elementDictionary.parameter5, description: elementDictionary.parameter4, departmentTPId: elementDictionary.parameter3 };
         this.birthDepartment.push(departmentTP);
       }
 
       if (dictionaryTP == 'ciudades') {
-        cityTP = { cityTPId: data.catalogs[i].field4, description: data.catalogs[i].field5 };
+        cityTP = { cityTPId: elementDictionary.parameter4, description: elementDictionary.parameter5 };
         this.cityOfBirth.push(cityTP);
       }
 
       if (dictionaryTP == 'tipo_direccion') {
-        adressTypes={adressTypesId: data.catalogs[i].field1, description: data.catalogs[i].field3};
+        adressTypes = { adressTypesId: elementDictionary.parameter1, description: elementDictionary.parameter3 };
         this.addressTypes.push(adressTypes);
       }
 

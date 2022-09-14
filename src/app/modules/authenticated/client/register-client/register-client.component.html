@@ -160,13 +160,14 @@
 
 
 
-    <form class="form-data">
+    <form [formGroup]="createProductDiscountForm" class="form-data">
 
         <div class="list-product">
             <div class="form-group">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Producto</mat-label>
-                    <select matNativeControl required name="productCode" id="productCode" class="form-control">
+                    <select matNativeControl required name="productCode" id="productCode" class="form-control"
+                        formControlName="productCode">
                         <option [value]="item.productCode" *ngFor="let item of productList" class="option">
                             {{item.name | titlecase}}</option>
                     </select>
@@ -177,11 +178,12 @@
         <div class="other">
 
             <div class="form-group">
-                <p-inputNumber prefix="%" [min]="0" [max]="100"></p-inputNumber>
+                <p-inputNumber prefix="%" [min]="0" [max]="100" formControlName="discountPercent"></p-inputNumber>
             </div>
 
             <div class="form-group">
-                <button class="button-modal" type="button" pButton autofocus mat-raised-button color="primary">
+                <button class="button-modal" type="button" pButton autofocus mat-raised-button color="primary" (click)="assignValuesAndCreateDiscount()"
+                [disabled]='!createProductDiscountForm.valid'>
                     <i class="bi bi-save2"></i> Asignar</button>
             </div>
 

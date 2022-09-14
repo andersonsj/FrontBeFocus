@@ -2,7 +2,7 @@ import { NotificationService } from './../../../../services/notifications/notifi
 import { ClientService } from './../../../../services/client/client.service';
 import { CacheTPService } from './../../../../services/cache/cache.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenderTP } from '@interface/genderTP';
 import { CivilStatusTP } from '@interface/civilStatusTP';
 import { CountryTP } from '@interface/countryTP';
@@ -11,6 +11,7 @@ import { CityTP } from '@interface/cityTP';
 import { CurrentClient } from '@interface/currentClient';
 import { ProductService } from '@services/product/product.service';
 import { TableProducts } from '@interface/tableProducts';
+import { ProductThirdPartyDiscountService } from '@services/productThirdPartyDiscount/product-third-party-discount.service';
 
 
 @Component({
@@ -35,18 +36,23 @@ export class RegisterClientComponent implements OnInit {
   displayModal!: boolean;
 
   public productList!: TableProducts[];
+  public createProductDiscountForm!: FormGroup;
 
   constructor(private cacheTPService: CacheTPService, private formBuilder: FormBuilder, private clientService: ClientService,
-    private notificationService: NotificationService, private productService: ProductService) { }
+    private notificationService: NotificationService, private productService: ProductService,
+    private productThirdPartyDiscountService: ProductThirdPartyDiscountService) { }
 
   ngOnInit(): void {
     this.buildForm();
     this.consultDictionariesTP();
+    this.buildCreateProductDiscountForm();
+
 
     this.clientService.currentClientData.subscribe(
       data => {
         this.currentClient = data;
         this.updateDataForm(data);
+
       }
     );
 
@@ -122,6 +128,54 @@ export class RegisterClientComponent implements OnInit {
     this.registerForm.controls[nameControl].setValue(valueControl);
   }
 
+  private buildCreateProductDiscountForm() {
+    this.createProductDiscountForm = this.formBuilder.group({
+      active: new FormControl('true'),
+      available_quantity: new FormControl(''),
+      companyCode: new FormControl(''),
+      description: new FormControl(''),
+      discountPercent: new FormControl('', Validators.required),
+      documentNumber: new FormControl(''),
+      effectiveEndDate: new FormControl(''),
+      effectiveStartDate: new FormControl(''),
+      id: new FormControl(''),
+      productCode: new FormControl('', Validators.required),
+      productThirdDiscountSerial: new FormControl(''),
+      typeDocument: new FormControl(''),
+    });
+  }
+
+  setDataCreateProductDiscountForm(nameControl: string, valueControl: any) {
+    this.createProductDiscountForm.controls[nameControl].setValue(valueControl);
+  }
+
+  getCreateProductDiscountForm(nameControl: string) {
+    return this.createProductDiscountForm.controls[nameControl].value;;
+  }
+
+  createProductDiscount() {
+
+    this.productThirdPartyDiscountService.createProductThirdPartyDiscountByThirdParty(this.createProductDiscountForm.value).subscribe(data => {
+      console.log(data);
+
+      if (data.status.code == "200") {
+        this.notificationService.showSuccess('Se registro un descuento de ' + this.getCreateProductDiscountForm('discountPercent') + '%', '¡Descuento asigando!');
+        this.displayModal = false;
+      } else {
+        this.notificationService.showError('', '¡Registro Fallido!');
+      }
+
+    })
+  }
+
+
+  assignValuesAndCreateDiscount() {
+    this.setDataCreateProductDiscountForm('companyCode', this.currentClient.companyCode);
+    this.setDataCreateProductDiscountForm('typeDocument', this.getDataRegisterForm('typeDocument'));
+    this.setDataCreateProductDiscountForm('documentNumber', this.getDataRegisterForm('documentNumber'));
+    this.createProductDiscount();
+  }
+
   updateDataForm(currentClient: CurrentClient) {
 
     this.setDataRegisterForm('typeDocument', currentClient.typeDocument);
@@ -184,5 +238,7 @@ export class RegisterClientComponent implements OnInit {
       }
     });
   }
+
+
 
 }

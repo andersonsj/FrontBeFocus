@@ -42,7 +42,11 @@ export class ConsultClientComponent implements OnInit {
   }
 
   consultTypeDocumentTP() {
+    console.log('consultTypeDocumentTP');
+
     this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documento');
+
+    console.log(this.documentTypeTP);
   }
 
   getClient() {
