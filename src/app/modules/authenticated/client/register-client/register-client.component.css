@@ -16,6 +16,11 @@ button {
     font-size: 0.8vw;
 }
 
+.button-modal {
+    width: 100%;
+    font-size: 0.8vw;
+}
+
 .mat-card-auto {
     box-shadow: 0px 10px 10px rgb(26, 60, 64);
     background: rgb(239, 239, 239);
@@ -25,3 +30,37 @@ button {
     width: 100%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+::ng-deep .p-inputtext {
+    height: 80%;
+}
+
+::ng-deep .p-inputnumber-input {
+    width: 90%;
+    flex: unset;
+}
+
+.form-data {
+    display: grid;
+}
+
+.list-product {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.other {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 1%;
+}

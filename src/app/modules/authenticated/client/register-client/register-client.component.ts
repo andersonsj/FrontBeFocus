@@ -9,6 +9,8 @@ import { CountryTP } from '@interface/countryTP';
 import { DepartmentTP } from '@interface/departmentTP';
 import { CityTP } from '@interface/cityTP';
 import { CurrentClient } from '@interface/currentClient';
+import { ProductService } from '@services/product/product.service';
+import { TableProducts } from '@interface/tableProducts';
 
 
 @Component({
@@ -30,8 +32,12 @@ export class RegisterClientComponent implements OnInit {
   public activateButtonUpdate!: Boolean;
   public activateButtonRegister!: Boolean;
 
+  displayModal!: boolean;
+
+  public productList!: TableProducts[];
+
   constructor(private cacheTPService: CacheTPService, private formBuilder: FormBuilder, private clientService: ClientService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -160,6 +166,22 @@ export class RegisterClientComponent implements OnInit {
 
       }
 
+    });
+  }
+
+  showDialog() {
+    this.displayModal = true;
+    this.getProductsByCodeCompany(String(this.currentClient.companyCode));
+  }
+
+  getProductsByCodeCompany(companyCode: string) {
+    this.productService.getProductsByCodeCompany(companyCode).subscribe(data => {
+      switch (data.status.code) {
+        case '200': {
+          this.productList = data.productDTOList;
+          break;
+        }
+      }
     });
   }
 

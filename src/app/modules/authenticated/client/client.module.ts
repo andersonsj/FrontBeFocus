@@ -13,6 +13,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SharedModule } from '@shared/shared/shared.module';
 import { CreateClientComponent } from './create-client/create-client.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {DialogModule} from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { CreateClientComponent } from './create-client/create-client.component';
     MatPaginatorModule,
     MatCardModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDialogModule,
+    DialogModule,
+    InputNumberModule
   ]
 })
 

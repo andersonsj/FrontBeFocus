@@ -131,7 +131,13 @@
 
                 <div class="form-group"></div>
 
-                <div class="form-group"></div>
+                <div class="form-group">
+
+                    <button mat-raised-button color="primary" class="button-save"
+                        title="Agregar porcentaje de descuento por producto" (click)="showDialog()">
+                        <i class="bi bi-percent"></i> Descuento por producto</button>
+
+                </div>
 
                 <div class="form-group">
                     <div>
@@ -146,3 +152,40 @@
     </mat-card>
 
 </div>
+
+<p-dialog header="Title" [(visible)]="displayModal" [transitionOptions]="'0ms'">
+    <ng-template pTemplate="header">
+        <b>Porcentaje de descuento por producto</b>
+    </ng-template>
+
+
+
+    <form class="form-data">
+
+        <div class="list-product">
+            <div class="form-group">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Producto</mat-label>
+                    <select matNativeControl required name="productCode" id="productCode" class="form-control">
+                        <option [value]="item.productCode" *ngFor="let item of productList" class="option">
+                            {{item.name | titlecase}}</option>
+                    </select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="other">
+
+            <div class="form-group">
+                <p-inputNumber prefix="%" [min]="0" [max]="100"></p-inputNumber>
+            </div>
+
+            <div class="form-group">
+                <button class="button-modal" type="button" pButton autofocus mat-raised-button color="primary">
+                    <i class="bi bi-save2"></i> Asignar</button>
+            </div>
+
+        </div>
+    </form>
+
+</p-dialog>
