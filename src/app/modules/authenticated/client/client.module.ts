@@ -16,6 +16,8 @@ import { CreateClientComponent } from './create-client/create-client.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {DialogModule} from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     MatDatepickerModule,
     MatDialogModule,
     DialogModule,
-    InputNumberModule
+    InputNumberModule,
+    TableModule,
+    ButtonModule
   ]
 })
 

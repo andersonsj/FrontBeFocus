@@ -5,7 +5,11 @@
 
 .be-form-consult-client {
     display: grid;
-    grid-template-columns: auto auto 20%;
+    grid-template-columns: 16% 16% 20% auto auto auto;
+}
+
+.be-label {
+    width: 80%;
 }
 
 .be-div-interno {
@@ -21,19 +25,26 @@
 }
 
 button {
-    width: 70%;
+    height: 45%;
+    width: 12%;
     font-size: calc(0.8em + 0.2vw);
 }
-
 
 option {
     color: white;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-input[type=number] { -moz-appearance:textfield; }
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+::ng-deep .mat-form-field {
+    width: 96%;
+}

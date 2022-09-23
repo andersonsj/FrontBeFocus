@@ -1,36 +1,27 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { ClientService } from '@services/client/client.service';
 import { AuthService } from '@services/auth/auth.service';
 import { ThirdPartyDTO } from '@interface/thirdPartyDTO';
 import { ResponseLogin } from '@interface/responseLogin';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-grid-client',
   templateUrl: './grid-client.component.html',
   styleUrls: ['./grid-client.component.css']
 })
 
-export class GridClientComponent implements OnInit, AfterViewInit {
+export class GridClientComponent implements OnInit {
 
-  constructor(private clientService: ClientService, private authService: AuthService) { }
+  constructor(private clientService: ClientService, private authService: AuthService,  private router: Router) { }
 
   public clientList!: ThirdPartyDTO[];
   public column: string[] = ['Tipo de documento', 'Numero de documento', 'Nombre', 'Digito de verificacion'];
   public dataSource = new MatTableDataSource<ThirdPartyDTO>(this.clientList);
   public userCurrent!: ResponseLogin;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.paginator._intl.itemsPerPageLabel = 'Numero de clientes por pagina';
-    this.paginator._intl.firstPageLabel = 'Primera pagina';
-    this.paginator._intl.lastPageLabel = 'Ultima pagina';
-    this.paginator._intl.nextPageLabel = 'Siguiente pagina';
-    this.paginator._intl.previousPageLabel = 'Pagina anterior';
-    this.dataSource.paginator = this.paginator;
-
-  }
+  public first: number = 0;
+  public rows: number = 10;
 
 
   ngOnInit(): void {
@@ -51,6 +42,10 @@ export class GridClientComponent implements OnInit, AfterViewInit {
         this.dataSource.data = this.clientList;
       }
     });
+  }
+
+  navegation() {
+    this.router.navigate(['/home/authenticated/content-user/content-client']);
   }
 
 }

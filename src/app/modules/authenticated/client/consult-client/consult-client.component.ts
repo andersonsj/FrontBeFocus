@@ -41,6 +41,10 @@ export class ConsultClientComponent implements OnInit {
     });
   }
 
+  getDataClientForm(nameControl: string):any {
+    return this.getClientForm.controls[nameControl].value;
+  }
+
   consultTypeDocumentTP() {
     console.log('consultTypeDocumentTP');
 
@@ -50,7 +54,9 @@ export class ConsultClientComponent implements OnInit {
   }
 
   getClient() {
+    let value : any = this.getDataClientForm('typeDocument');
     this.getClientForm.controls['companyCode'].setValue(this.currentUserMemory);
+    this.getClientForm.controls['typeDocument'].setValue(parseInt(value));
     this.clientService.getClient(this.getClientForm.value, false).subscribe();
     this.clientService.getClient(this.getClientForm.value, false).subscribe();
   }

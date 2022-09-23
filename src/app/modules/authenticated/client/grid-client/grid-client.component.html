@@ -1,4 +1,4 @@
-<div class="be-grid-client-content">
+<!-- <div class="be-grid-client-content">
 
     <div>
 
@@ -36,6 +36,71 @@
         <mat-paginator [pageSizeOptions]="[6, 9, 13]" showFirstLastButtons
             aria-label="Select page of periodic elements">
         </mat-paginator>
+    </div>
+
+</div> -->
+
+<div class="be-grid-client-content">
+
+    <div>
+        <mat-card>
+            <mat-card-title>Consulta de clientes</mat-card-title>
+            <mat-card-subtitle>En esta ventana puede visualizar un listado con sus clientes</mat-card-subtitle>
+            <mat-card-content>
+                <div class="card">
+                    <p-table #dt1 dataKey="id" [value]="clientList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [rowsPerPageOptions]="[10,25,50]" [globalFilterFields]="['typeDocument','documentNumber','names','surname']">
+
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex">
+                            <span class="p-input-icon-left p-ml-auto">
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="bi bi-search"></i></span>
+                                    </div>
+                                    <input pInputText type="text" title="Consulta clientes por nombre o documento." (input)="dt1.filterGlobal($any($event.target).value, 'contains')"/>
+                                </div>
+                            </span>
+                        </div>
+                    </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="typeDocument">Tipo de documento <p-sortIcon field="typeDocument">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="documentNumber">Numero de documento <p-sortIcon field="documentNumber"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="names">Nombre <p-sortIcon field="names"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="surname">Apellidos <p-sortIcon field="surname"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="digit">Digito de verificacion <p-sortIcon field="digit"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-client>
+                        <tr>
+                            <td>{{client.typeDocumentString | titlecase}}</td>
+                            <td (click)="navegation()">{{client.documentNumber}}</td>
+                            <td>{{client.names | titlecase}}</td>
+                            <td>{{client.surname | titlecase}}</td>
+                            <td> </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorleft">
+                        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorright">
+                        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                </p-table>
+                </div>
+            </mat-card-content> 
+        </mat-card>
     </div>
 
 </div>

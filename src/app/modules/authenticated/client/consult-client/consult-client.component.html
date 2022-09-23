@@ -1,19 +1,37 @@
 <div class="be-consult-client">
-    <form class="be-form-consult-client" novalidate [formGroup]="getClientForm">
-        <div class="form-group be-div-interno">
-            <div><label>Tipo documento</label></div>
-            <div>
-                <select name="tipoDocumento" id="tipoDocumento" class="form-control" formControlName="typeDocument" required>
-                    <option [value]="item.documentTypeTPId" *ngFor="let item of documentTypeTP" class="option">{{item.description | titlecase}}</option>
-                </select>
+
+    <mat-card>
+        <mat-card-title>Consulta terceros</mat-card-title>
+        <mat-card-subtitle>En esta sección puedes datos personales, localización de tus Clientes/Aliados
+            Comerciales/Proveedores.</mat-card-subtitle>
+
+        <form novalidate [formGroup]="getClientForm" class="be-form-consult-client">
+
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de documento</mat-label>
+                    <select matNativeControl required name="tipoDocumento" id="tipoDocumento" class="form-control be-label"
+                        formControlName="typeDocument" required>
+                        <option [value]="item.documentTypeTPId" *ngFor="let item of documentTypeTP" class="option">
+                            {{item.description | titlecase}}</option>
+                    </select>
+                </mat-form-field>
             </div>
-        </div>
-        <div class="form-group be-div-interno">
-            <div><label>Número documento</label></div>
-            <div><input type="number" class="form-control" formControlName="documentNumber" required></div>
-        </div>
-        <div class="form-group be-div-consultar">
-            <div><button id="boton-consultar" class="btn btn-primary"  [disabled]="getClientForm.invalid" (click) = "getClient()"><i class="bi bi-search"></i> Consultar cliente</button></div>
-        </div>
-    </form>
+    
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Número documento</mat-label>
+                    <input matInput type="text" class="form-control" formControlName="documentNumber" required>
+                </mat-form-field>
+            </div>
+    
+            <div class="form-group be-div-consultar">
+                <div><button id="boton-consultar" class="btn btn-primary" [disabled]="getClientForm.invalid"
+                        (click)="getClient()" title="Ejecutar consulta"><i class="bi bi-search"></i></button></div>
+            </div>
+
+        </form>
+
+    </mat-card>
+    <br>
 </div>
