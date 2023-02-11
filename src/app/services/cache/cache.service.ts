@@ -34,43 +34,43 @@ export class CacheTPService {
   private cacheExists(dictionaryTP: string): any {
 
     switch (dictionaryTP) {
-      case 'tipo_documento': {
+      case 'tipo_documentoCRM': {
         if (this.documentTypeTP.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
         return this.documentTypeTP;
       }
-      case 'genero': {
+      case 'generoCRM': {
         if (this.genderTP.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
         return this.genderTP;
       }
-      case 'estado_civil': {
+      case 'estado_civilCRM': {
         if (this.civilStatusTP.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
         return this.civilStatusTP;
       }
-      case 'pais': {
+      case 'paisCRM': {
         if (this.countryOfBirthTP.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
         return this.countryOfBirthTP;
       }
-      case 'departamentos': {
+      case 'departamentosCRM': {
         if (this.birthDepartment.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
         return this.birthDepartment;
       }
-      case 'ciudades': {
+      case 'ciudadesCRM': {
         if (this.cityOfBirth.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
         return this.cityOfBirth;
       }
-      case 'tipo_direccion': {
+      case 'tipo_direccionCRM': {
         if (this.addressTypes.length == 0) {
           this.useServiceForconsultTpDictionaries(dictionaryTP);
         }
@@ -106,37 +106,37 @@ export class CacheTPService {
 
       let elementDictionary: any = data.catalogsCRM[i];
 
-      if (dictionaryTP == 'tipo_documento') {
+      if (dictionaryTP == 'tipo_documentoCRM') {
         documentTypeTP = { documentTypeTPId: elementDictionary.parameter1, description: elementDictionary.parameter3 };
         this.documentTypeTP.push(documentTypeTP);
       }
 
-      if (dictionaryTP == 'genero') {
+      if (dictionaryTP == 'generoCRM') {
         genderTP = { description: elementDictionary.parameter3, genderTPId: elementDictionary.parameter1 };
         this.genderTP.push(genderTP);
       }
 
-      if (dictionaryTP == 'estado_civil') {
+      if (dictionaryTP == 'estado_civilCRM') {
         civilStatusTP = { civilStatusTPId: elementDictionary.parameter1, civilStatusTPDescription: elementDictionary.parameter3 };
         this.civilStatusTP.push(civilStatusTP);
       }
 
-      if (dictionaryTP == 'pais') {
+      if (dictionaryTP == 'paisCRM') {
         countryTp = { abbreviation: elementDictionary.parameter1, description: elementDictionary.parameter3 };
         this.countryOfBirthTP.push(countryTp);
       }
 
-      if (dictionaryTP == 'departamentos') {
+      if (dictionaryTP == 'departamentosCRM') {
         departmentTP = { abbreviation: elementDictionary.parameter5, description: elementDictionary.parameter4, departmentTPId: elementDictionary.parameter3 };
         this.birthDepartment.push(departmentTP);
       }
 
-      if (dictionaryTP == 'ciudades') {
+      if (dictionaryTP == 'ciudadesCRM') {
         cityTP = { cityTPId: elementDictionary.parameter4, description: elementDictionary.parameter5 };
         this.cityOfBirth.push(cityTP);
       }
 
-      if (dictionaryTP == 'tipo_direccion') {
+      if (dictionaryTP == 'tipo_direccionCRM') {
         adressTypes = { adressTypesId: elementDictionary.parameter1, description: elementDictionary.parameter3 };
         this.addressTypes.push(adressTypes);
       }

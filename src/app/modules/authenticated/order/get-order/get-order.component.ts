@@ -122,7 +122,7 @@ export class GetOrderComponent implements OnInit {
   }
 
   consultTypeDocumentTP() {
-    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documento');
+    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documentoCRM');
   }
 
   assignValuesToControlsOrder(data: any) {

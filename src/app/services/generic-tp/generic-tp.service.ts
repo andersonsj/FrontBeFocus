@@ -14,12 +14,12 @@ export class GenericTpService {
 
     let params = new HttpParams().append('catalogName', catalogName);
 
-    if (catalogName == 'departamentos' && selectedCountryTP != null && selectedCountryTP != '') {
+    if (catalogName == 'departamentosCRM' && selectedCountryTP != null && selectedCountryTP != '') {
       params = new HttpParams().append('catalogName', catalogName)
         .append('field1', selectedCountryTP);
     }
 
-    if (catalogName == 'ciudades' && selectedBirthDepartmentTP != null && selectedBirthDepartmentTP != '') {
+    if (catalogName == 'ciudadesCRM' && selectedBirthDepartmentTP != null && selectedBirthDepartmentTP != '') {
       params = new HttpParams().append('catalogName', catalogName)
         .append('field1', selectedCountryTP).append('field3', selectedBirthDepartmentTP) ;
     }

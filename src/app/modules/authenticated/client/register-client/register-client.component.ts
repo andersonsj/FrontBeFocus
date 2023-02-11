@@ -71,17 +71,17 @@ export class RegisterClientComponent implements OnInit {
   }
 
   consultDictionariesTP() {
-    this.genderTP = this.cacheTPService.consultTpDictionaries('genero');
-    this.civilStatusTPList = this.cacheTPService.consultTpDictionaries('estado_civil');
-    this.countryOfBirthTP = this.cacheTPService.consultTpDictionaries('pais');
+    this.genderTP = this.cacheTPService.consultTpDictionaries('generoCRM');
+    this.civilStatusTPList = this.cacheTPService.consultTpDictionaries('estado_civilCRM');
+    this.countryOfBirthTP = this.cacheTPService.consultTpDictionaries('paisCRM');
   }
 
   selectedCountryChange() {
-    this.birthDepartment = this.cacheTPService.consultTpDictionaries('departamentos', this.selectedCountryTP);
+    this.birthDepartment = this.cacheTPService.consultTpDictionaries('departamentosCRM', this.selectedCountryTP);
   }
 
   selectedBirthDepartmentChange() {
-    this.cityOfBirth = this.cacheTPService.consultTpDictionaries('ciudades', this.selectedCountryTP, this.selectedBirthDepartmentTP);
+    this.cityOfBirth = this.cacheTPService.consultTpDictionaries('ciudadesCRM', this.selectedCountryTP, this.selectedBirthDepartmentTP);
   }
 
   private buildForm() {

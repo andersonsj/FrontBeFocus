@@ -136,7 +136,7 @@ export class CreateOrderComponent implements OnInit {
 
 
   consultTypeDocumentTP() {
-    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documento');
+    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documentoCRM');
   }
 
   createOrder() {

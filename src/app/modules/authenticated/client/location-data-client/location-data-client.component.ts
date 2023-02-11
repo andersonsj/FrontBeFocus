@@ -91,16 +91,16 @@ export class LocationDataClientComponent implements OnInit {
   }
 
   consultDictionariesTP() {
-    this.addressTypes = this.cacheTPService.consultTpDictionaries('tipo_direccion');
-    this.countries = this.cacheTPService.consultTpDictionaries('pais');
+    this.addressTypes = this.cacheTPService.consultTpDictionaries('tipo_direccionCRM');
+    this.countries = this.cacheTPService.consultTpDictionaries('paisCRM');
   }
 
   selectedCountryChange() {
-    this.departments = this.cacheTPService.consultTpDictionaries('departamentos', this.selectedCountryTP);
+    this.departments = this.cacheTPService.consultTpDictionaries('departamentosCRM', this.selectedCountryTP);
   }
 
   selectedDepartmentChange() {
-    this.cities = this.cacheTPService.consultTpDictionaries('ciudades', this.selectedCountryTP, this.selectedDepartmentTP);
+    this.cities = this.cacheTPService.consultTpDictionaries('ciudadesCRM', this.selectedCountryTP, this.selectedDepartmentTP);
   }
 
   getCurrentClient() {

@@ -126,18 +126,18 @@ export class CreateClientComponent implements OnInit {
 
 
   consultDictionariesTP() {
-    this.genderTP = this.cacheTPService.consultTpDictionaries('genero');
-    this.civilStatusTPList = this.cacheTPService.consultTpDictionaries('estado_civil');
-    this.countryOfBirthTP = this.cacheTPService.consultTpDictionaries('pais');
-    this.addressTypes = this.cacheTPService.consultTpDictionaries('tipo_direccion');
+    this.genderTP = this.cacheTPService.consultTpDictionaries('generoCRM');
+    this.civilStatusTPList = this.cacheTPService.consultTpDictionaries('estado_civilCRM');
+    this.countryOfBirthTP = this.cacheTPService.consultTpDictionaries('paisCRM');
+    this.addressTypes = this.cacheTPService.consultTpDictionaries('tipo_direccionCRM');
   }
 
   selectedCountryChange(selectedCountryTP: any) {
-    this.birthDepartment = this.cacheTPService.consultTpDictionaries('departamentos', selectedCountryTP);
+    this.birthDepartment = this.cacheTPService.consultTpDictionaries('departamentosCRM', selectedCountryTP);
   }
 
   selectedBirthDepartmentChange() {
-    this.cityOfBirth = this.cacheTPService.consultTpDictionaries('ciudades', this.selectedCountryTP, this.selectedBirthDepartmentTP);
+    this.cityOfBirth = this.cacheTPService.consultTpDictionaries('ciudadesCRM', this.selectedCountryTP, this.selectedBirthDepartmentTP);
   }
 
   setDataRegisterForm(nameControl: string, valueControl: any) {
@@ -212,7 +212,7 @@ export class CreateClientComponent implements OnInit {
   }
 
   consultTypeDocumentTP() {
-    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documento');
+    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documentoCRM');
   }
 
 

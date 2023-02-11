@@ -65,7 +65,7 @@ export class ProductDiscountComponent implements OnInit {
   }
 
   consultTypeDocumentTP() {
-    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documento');
+    this.documentTypeTP = this.cacheTPService.consultTpDictionaries('tipo_documentoCRM');
   }
 
   getProductsByCodeCompany(companyCode: string) {
